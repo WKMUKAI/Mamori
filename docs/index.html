@@ -568,7 +568,7 @@ function carouselPrev(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap
 initCarousels();
 
 var S={housing:'system',h:40,w:50,d:5,gap:1,qty:1,artH:38,artW:48,artD:3};
-const LANDED=86.38,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6};
+const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6};
 var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
 var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
 var cvs=document.getElementById('bpCanvas'),ctx=cvs.getContext('2d');
