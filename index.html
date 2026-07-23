@@ -91,7 +91,9 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,44px);line-
 .testimonial-card:hover{border-color:var(--text-3)}
 .testimonial-card blockquote{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:16px;font-style:normal}
 .testimonial-card blockquote::before{content:"\201C";font-size:24px;color:var(--text-3);display:block;margin-bottom:4px}
-.testimonial-author{display:flex;align-items:center;gap:10px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--text-3);overflow:hidden}
+.testimonial-avatar img{width:100%;height:100%;object-fit:cover}
 .testimonial-author .ta-name{font-size:13px;font-weight:500;color:var(--text-1)}
 .testimonial-author .ta-role{font-size:11px;color:var(--text-3)}
 
@@ -308,8 +310,8 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
           <div class="carousel-nav"></div>
         </div>
         <div class="prod-body">
-          <h3>Slide Box + Ukon Bag</h3>
-          <p class="prod-desc">Our complete system &mdash; slide box with a turmeric-dyed cotton inner wrap. Natural insect repellent and breathable protection.</p>
+          <h3>Ukon Bag</h3>
+          <p class="prod-desc">Turmeric-dyed cotton inner wrap with natural insect repellent properties. Add it to any Slide Box or Cover Box for museum-grade protection.</p>
           <div class="prod-uses"><span>Museum-grade</span><span>Insect protection</span><span>Premium</span></div>
         </div>
       </div>
@@ -351,6 +353,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
       <div class="testimonial-card">
         <blockquote>Finally, a box that actually fits the artwork. No more rattling around in oversized crates. The Ukon Bag is a game-changer for long-term storage.</blockquote>
         <div class="testimonial-author">
+          <div class="testimonial-avatar"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#e0e0e0"/><circle cx="20" cy="14" r="6" fill="#999"/><path d="M6 36 Q20 26 34 36" fill="#999"/></svg></div>
           <div>
             <div class="ta-name">Gallery Owner</div>
             <div class="ta-role">HK Art Dealer</div>
@@ -360,6 +363,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
       <div class="testimonial-card">
         <blockquote>Fast turnaround, custom sizing, and direct communication with the studio. Exactly what the Hong Kong art scene needs.</blockquote>
         <div class="testimonial-author">
+          <div class="testimonial-avatar"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#e8e8e8"/><circle cx="20" cy="14" r="6" fill="#aaa"/><path d="M6 36 Q20 26 34 36" fill="#aaa"/></svg></div>
           <div>
             <div class="ta-name">Private Collector</div>
             <div class="ta-role">Hong Kong</div>
@@ -436,7 +440,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
           <span class="bp-tag bl">mamori</span>
         </div>
         <div class="canvas-meta">
-          <span id="metaHousing">Slide Box + Ukon Bag</span>
+          <span id="metaHousing">Ukon Bag</span>
           <span class="live" id="metaDims">40 &times; 50 &times; 5 cm</span>
         </div>
       </div>
@@ -444,7 +448,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
         <div class="ctrl-group">
           <div class="ctrl-label">Choose your system</div>
           <div class="tog-row" id="housingToggle">
-            <button class="tog-btn active" data-v="system">Slide Box + Ukon Bag</button>
+            <button class="tog-btn active" data-v="ukon">Ukon Bag</button>
             <button class="tog-btn" data-v="slide">Slide Box</button>
             <button class="tog-btn" data-v="cover">Cover Box</button>
           </div>
@@ -604,10 +608,10 @@ function carouselNext(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap
 function carouselPrev(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap.querySelector('.carousel-track');var imgs=track.querySelectorAll('img');var current=Math.round(track.style.transform.replace('translateX(-','').replace('%)','')||0)/100;goToSlide(wrap,current>0?current-1:imgs.length-1)}
 initCarousels();
 
-var S={housing:'system',h:40,w:50,d:5,gap:1,qty:1,artH:38,artW:48,artD:3};
-var TIERS=[{max:60,name:'Small',base:{system:175,slide:150,cover:105}},{max:140,name:'Medium',base:{system:325,slide:280,cover:196}},{max:999,name:'Large',base:{system:515,slide:450,cover:315}}];
+var S={housing:'ukon',h:40,w:50,d:5,gap:1,qty:1,artH:38,artW:48,artD:3};
+var TIERS=[{max:60,name:'Small',base:{ukon:175,slide:150,cover:105}},{max:140,name:'Medium',base:{ukon:325,slide:280,cover:196}},{max:999,name:'Large',base:{ukon:515,slide:450,cover:315}}];
 var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
-var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
+var HL={ukon:'Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
 var cvs=document.getElementById('bpCanvas'),ctx=cvs.getContext('2d');
 var dpr=window.devicePixelRatio||1;
 var disp={h:40,w:50,d:5,gap:1};
@@ -618,7 +622,7 @@ function dimLine(x1,y1,x2,y2){ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=.5;
 function canvasLoop(){var sp=.08;disp.h=lerp(disp.h,S.h,sp);disp.w=lerp(disp.w,S.w,sp);disp.d=lerp(disp.d,S.d,sp);drawCanvas();requestAnimationFrame(canvasLoop)}
 function getQuote(){var combo=S.h+S.w,tier=TIERS.find(function(t){return combo<=t.max}),base=tier.base[S.housing],perUnit=base,vol=VOL.slice().reverse().find(function(v){return S.qty>=v.min}),pct=vol?vol.pct:0,subTotal=perUnit*S.qty,discAmt=Math.round(subTotal*pct/100),total=subTotal-discAmt;return{tier:tier,base:base,perUnit:perUnit,subTotal:subTotal,discAmt:discAmt,total:total,pct:pct,tierName:tier.name,perUnitDisc:Math.round(perUnit*(100-pct)/100)}}
 var prevTotal=0;
-function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 '+q.tierName+' tier';document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.getElementById('discLabel').textContent=q.pct>0?'('+q.pct+'% off)':'';document.getElementById('hDisp').textContent=S.h;document.getElementById('wDisp').textContent=S.w;document.getElementById('dDisp').textContent=S.d;document.getElementById('gapDisp').textContent=S.gap;document.getElementById('gapVal').textContent=S.gap+' cm';if(S.housing==='system'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('gapSlider').value=0.5;document.getElementById('gapDisp').textContent='0.5';document.getElementById('gapVal').textContent='0.5 cm';document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='system'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
+function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 '+q.tierName+' tier';document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.getElementById('discLabel').textContent=q.pct>0?'('+q.pct+'% off)':'';document.getElementById('hDisp').textContent=S.h;document.getElementById('wDisp').textContent=S.w;document.getElementById('dDisp').textContent=S.d;document.getElementById('gapDisp').textContent=S.gap;document.getElementById('gapVal').textContent=S.gap+' cm';if(S.housing==='ukon'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('gapSlider').value=0.5;document.getElementById('gapDisp').textContent='0.5';document.getElementById('gapVal').textContent='0.5 cm';document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='ukon'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
 function animateNumber(el,from,to,dur){var start=performance.now();(function tick(now){var p=Math.min((now-start)/dur,1);el.textContent='$'+Math.round(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(performance.now())}
 function bindToggle(gid,key){var btns=document.querySelectorAll('#'+gid+' .tog-btn');btns.forEach(function(btn){btn.addEventListener('click',function(){btns.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');S[key]=btn.dataset.v;renderQuote()})})}
 bindToggle('housingToggle','housing');
