@@ -84,6 +84,17 @@ h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,44px);line-
 .coming-soon h3{font-size:16px;font-weight:500;color:var(--text-2)}
 .coming-soon p{font-size:13px;color:var(--text-3)}
 
+/* TESTIMONIALS */
+.testimonials{padding:60px 0;border-top:1px solid var(--border);background:#fafafa}
+.testimonial-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.testimonial-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px 24px;transition:border .2s}
+.testimonial-card:hover{border-color:var(--text-3)}
+.testimonial-card blockquote{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:16px;font-style:normal}
+.testimonial-card blockquote::before{content:"\201C";font-size:24px;color:var(--text-3);display:block;margin-bottom:4px}
+.testimonial-author{display:flex;align-items:center;gap:10px}
+.testimonial-author .ta-name{font-size:13px;font-weight:500;color:var(--text-1)}
+.testimonial-author .ta-role{font-size:11px;color:var(--text-3)}
+
 /* PHILOSOPHY */
 .philosophy{padding:60px 0;border-top:1px solid var(--border)}
 .phil-content{max-width:620px;margin:0 auto 36px;text-align:center}
@@ -243,7 +254,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
 <section class="hero">
   <div class="container">
     <div>
-      <div class="hero-eyebrow">守 &nbsp;MAMORI — Japanese protective boxes, handcrafted in Hong Kong</div>
+      <div class="hero-eyebrow">MAMORI — Japanese protective boxes, handcrafted in Hong Kong</div>
       <h1>Protective packaging<br>for your artwork</h1>
       <p class="hero-sub">Protective boxes built to your artwork's exact dimensions.</p>
       <div class="hero-actions">
@@ -330,11 +341,40 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
   </div>
 </section>
 
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-label">
+      <div class="tag">WHAT COLLECTORS SAY</div>
+      <h2>Trusted by galleries &amp; collectors</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <blockquote>Finally, a box that actually fits the artwork. No more rattling around in oversized crates. The Ukon Bag is a game-changer for long-term storage.</blockquote>
+        <div class="testimonial-author">
+          <div>
+            <div class="ta-name">Gallery Owner</div>
+            <div class="ta-role">HK Art Dealer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>Fast turnaround, custom sizing, and direct communication with the studio. Exactly what the Hong Kong art scene needs.</blockquote>
+        <div class="testimonial-author">
+          <div>
+            <div class="ta-name">Private Collector</div>
+            <div class="ta-role">Hong Kong</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="philosophy" id="philosophy">
   <div class="container">
     <div class="phil-content">
       <div class="tag">OUR PHILOSOPHY</div>
-      <h2>Precision. Safety. Speed. <span style="font-weight:400;color:var(--text-3);font-size:18px">&#8201;匠心</span></h2>
+      <h2>Precision. Safety. Speed.</h2>
       <p class="phil-text">
         Hong Kong is one of the world's great art cities &mdash; a crossroads of galleries,
         auction houses, and private collections operating at extraordinary pace.
