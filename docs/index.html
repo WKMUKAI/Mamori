@@ -409,7 +409,8 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
           <div class="tog-row" id="housingToggle">
             <button class="tog-btn active" data-v="system">Slide Box + Ukon Bag</button>
             <button class="tog-btn" data-v="slide">Slide Box</button>
-            <button class="tog-btn" data-v="cover">Cover Box <span style="font-size:10px;opacity:.6;font-weight:400">(coming soon)</span></button>
+            <button class="tog-btn" data-v="cover">Cover Box</button>
+            <button class="tog-btn" data-v="cover_foam">Cover Box + Foam Padding <span style="font-size:10px;opacity:.6;font-weight:400">(coming soon)</span></button>
           </div>
         </div>
         <div class="ctrl-group">
@@ -564,10 +565,10 @@ function carouselPrev(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap
 initCarousels();
 
 var S={housing:'system',h:40,w:50,d:5,gap:1,foam:1,qty:1,artH:38,artW:48,artD:3};
-const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6};
+const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6,cover_foam:.6};
 var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
-var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
-var HOUSING_IMG={system:'images/Ukon%20Bag.png',slide:'images/slidebox-main.jpeg',cover:'images/slidebox-main.jpeg'};
+var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box',cover_foam:'Cover Box + Foam'};
+var HOUSING_IMG={system:'images/Ukon%20Bag.png',slide:'images/slidebox-main.jpeg',cover:'images/slidebox-main.jpeg',cover_foam:'images/slidebox-main.jpeg'};
 // canvas removed
 
 
