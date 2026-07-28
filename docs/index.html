@@ -246,7 +246,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
 <section class="hero">
   <div class="container">
     <div>
-      <div class="hero-eyebrow">守 &nbsp;MAMORI — Japanese protective boxes, handcrafted in Hong Kong</div>
+      <div class="hero-eyebrow"> &nbsp;MAMORI — Japanese protective boxes, handcrafted in Hong Kong</div>
       <h1>Protective packaging<br>for your artwork</h1>
       <p class="hero-sub">Protective boxes built to your artwork's exact dimensions.</p>
       <div class="hero-actions">
@@ -337,7 +337,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
   <div class="container">
     <div class="phil-content">
       <div class="tag">OUR PHILOSOPHY</div>
-      <h2>Precision. Safety. Speed. <span style="font-weight:400;color:var(--text-3);font-size:18px">&#8201;匠心</span></h2>
+      <h2>Precision. Safety. Speed. <span style="font-weight:400;color:var(--text-3);font-size:18px">&#8201;</span></h2>
       <p class="phil-text">
         Hong Kong is one of the world's great art cities &mdash; a crossroads of galleries,
         auction houses, and private collections operating at extraordinary pace.
@@ -425,40 +425,31 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
         </div>
         <div class="ctrl-group">
           <div class="ctrl-label">Box Dimensions</div>
-          <div class="slider-group">
-            <div class="slider-header"><label>Height</label><div class="sval"><span id="hDisp">40</span><span> cm</span></div></div>
-            <input type="range" id="hSlider" min="10" max="150" value="40">
-          </div>
-          <div class="slider-group">
-            <div class="slider-header"><label>Width</label><div class="sval"><span id="wDisp">50</span><span> cm</span></div></div>
-            <input type="range" id="wSlider" min="10" max="200" value="50">
-          </div>
-          <div class="slider-group">
-            <div class="slider-header"><label>Depth</label><div class="sval"><span id="dDisp">5</span><span> cm</span></div></div>
-            <input type="range" id="dSlider" min="2" max="40" value="5">
-          </div>
-        </div>
-        <div class="ctrl-group" id="gapGroup">
-          <div class="ctrl-label">Gap between artwork &amp; box wall</div>
           <div class="artwork-size-row">
-            <div class="art-size-field" style="max-width:80px"><input type="number" id="gapInput" value="0.5" min="0.5" max="8" step="0.5"></div>
+            <div class="art-size-field"><label>Height</label><input type="number" id="hInput" value="40" min="10" max="200"></div>
+            <span class="art-size-x">&times;</span>
+            <div class="art-size-field"><label>Width</label><input type="number" id="wInput" value="50" min="10" max="200"></div>
+            <span class="art-size-x">&times;</span>
+            <div class="art-size-field" style="max-width:70px"><label>Depth</label><input type="number" id="dInput" value="5" min="2" max="40"></div>
             <span class="art-size-unit">cm</span>
-          </div>
-          <div style="margin-top:6px;font-size:12px;color:var(--text-3)">
-            <span id="gapNoteText">Snug fit recommended with Ukon Bag</span>
           </div>
         </div>
         <div class="ctrl-group">
-          <div class="ctrl-label">Quantity<div class="ctrl-label">Quantity <span class="val" id="discLabel"></span></div>
+          <div class="ctrl-label">Gap between artwork &amp; box wall</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
+            <input type="number" id="gapInput" value="0.5" min="0.5" max="8" step="0.5" style="width:80px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:15px">
+            <span style="font-size:14px;color:var(--text-3)">cm</span>
+            <span id="gapNoteText" style="font-size:12px;color:var(--text-3)">Snug fit recommended with Ukon Bag</span>
+          </div>
+        </div>
+        <div class="ctrl-group">
+          <div class="ctrl-label">Quantity<div class="ctrl-label">Quantity<div class="ctrl-label">Quantity <span class="val" id="discLabel"></span></div>
           <div class="qty-group">
             <button class="qty-btn" id="qtyMinus">&minus;</button>
             <div class="qty-val" id="qtyDisp">1</div>
             <button class="qty-btn" id="qtyPlus">+</button>
           </div>
         </div>
-        <div class="ctrl-group">
-          <div class="ctrl-label">Extra requests</div>
-          <textarea class="input-field" id="extraRequest" placeholder="Ask our studio &mdash; specific materials, handling instructions, packaging preferences..."></textarea>
         </div>
         <div class="quote-box">
           <div class="quote-header">
@@ -476,9 +467,9 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
           <div class="ql">
             <div class="ql-left">
               <span class="ql-name">Delivery</span>
-              <span class="ql-detail">HK Island &amp; Kowloon</span>
+              <span class="ql-detail">HK Island $120 &mdash; Kowloon $180</span>
             </div>
-            <span class="ql-free">Phase 01 &mdash; Free</span>
+            <span class="ql-free">Free pickup Wong Chuk Hang</span>
           </div>
           <div class="quote-sub">
             <span>Per unit</span>
