@@ -112,7 +112,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .config{padding:80px 0;border-top:1px solid var(--border)}
 .config-header{text-align:center;margin-bottom:48px}
 .config-header .tag{margin-bottom:8px}
-.config-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+.config-layout-single{display:block;max-width:620px;margin:auto}.config-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
 .canvas-panel{position:sticky;top:80px;background:var(--bg);border-radius:16px;border:1px solid var(--border);overflow:hidden}
 .blueprint{width:100%;aspect-ratio:4/3;position:relative;background:#fff;border:1px solid #eee}
 .blueprint canvas{width:100%;height:100%}
@@ -211,7 +211,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
   .prod-grid{grid-template-columns:1fr}
   .phil-grid{grid-template-columns:1fr}
   .features-inner{grid-template-columns:repeat(2,1fr)}
-  .config-layout{grid-template-columns:1fr}
+  .config-layout-single{display:block;max-width:620px;margin:auto}.config-layout{grid-template-columns:1fr}
   .canvas-panel{position:relative;top:0}
   .nav-links{display:none}
   .mobile-btn{display:block}
@@ -391,18 +391,7 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
       <h2>Configure your box</h2>
       <p>Set your artwork dimensions, choose a system, and get a live quotation. No commitment &mdash; just the numbers.</p>
     </div>
-    <div class="config-layout">
-      <div class="canvas-panel">
-        <div class="blueprint">
-          <canvas id="bpCanvas"></canvas>
-          <span class="bp-tag tr" id="tierLabel">MEDIUM</span>
-          <span class="bp-tag bl">mamori</span>
-        </div>
-        <div class="canvas-meta">
-          <span id="metaHousing">Slide Box + Ukon Bag</span>
-          <span class="live" id="metaDims">40 &times; 50 &times; 5 cm</span>
-        </div>
-      </div>
+    <div class="config-layout-single">
       <div class="controls">
         <div class="ctrl-group">
           <div class="ctrl-label">Choose your system</div>
@@ -450,7 +439,15 @@ footer .container{display:flex;justify-content:space-between;align-items:center}
           </div>
         </div>
         <div class="ctrl-group">
-          <div class="ctrl-label">Quantity <span class="val" id="discLabel"></span></div>
+                  </div>
+        <div class="ctrl-group">
+          <div class="ctrl-label">Foam thickness <span class="val" id="foamLabel">1.0 cm</span></div>
+          <div class="slider-group">
+            <div class="slider-header"><label>Thin</label><div class="sval"><span id="foamDisp">1.0</span><span> cm</span></div></div>
+            <input type="range" id="foamSlider" min="0.5" max="3" value="1.0" step="0.5">
+          </div>
+        </div>
+        <div class="ctrl-label">Quantity <span class="val" id="discLabel"></span></div>
           <div class="qty-group">
             <button class="qty-btn" id="qtyMinus">&minus;</button>
             <div class="qty-val" id="qtyDisp">1</div>
@@ -567,7 +564,7 @@ function carouselNext(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap
 function carouselPrev(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap.querySelector('.carousel-track');var imgs=track.querySelectorAll('img');var current=Math.round(track.style.transform.replace('translateX(-','').replace('%)','')||0)/100;goToSlide(wrap,current>0?current-1:imgs.length-1)}
 initCarousels();
 
-var S={housing:'system',h:40,w:50,d:5,gap:1,qty:1,artH:38,artW:48,artD:3};
+var S={housing:'system',h:40,w:50,d:5,gap:1,foam:1,qty:1,artH:38,artW:48,artD:3};
 const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6};
 var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
 var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
@@ -581,27 +578,27 @@ function dimLine(x1,y1,x2,y2){ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=.5;
 function canvasLoop(){var sp=.08;disp.h=lerp(disp.h,S.h,sp);disp.w=lerp(disp.w,S.w,sp);disp.d=lerp(disp.d,S.d,sp);drawCanvas();requestAnimationFrame(canvasLoop)}
 function getQuote(){const base=calcPrice(S.h,S.w,S.d);const perUnit=Math.round(base*PRICE_RATIO[S.housing]);const vol=[...VOL].reverse().find(v=>S.qty>=v.min),pct=vol?vol.pct:0;const subTotal=perUnit*S.qty,discAmt=Math.round(subTotal*pct/100),total=subTotal-discAmt;return{base,perUnit,subTotal,discAmt,total,pct,tierName:S.h+S.w<=60?'Small':S.h+S.w<=140?'Medium':'Large',perUnitDisc:Math.round(perUnit*(100-pct)/100)}}
 var prevTotal=0;
-function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 '+q.tierName+' tier';document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.getElementById('discLabel').textContent=q.pct>0?'('+q.pct+'% off)':'';document.getElementById('hDisp').textContent=S.h;document.getElementById('wDisp').textContent=S.w;document.getElementById('dDisp').textContent=S.d;document.getElementById('gapDisp').textContent=S.gap;document.getElementById('gapVal').textContent=S.gap+' cm';if(S.housing==='system'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('gapSlider').value=0.5;document.getElementById('gapDisp').textContent='0.5';document.getElementById('gapVal').textContent='0.5 cm';document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='system'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
+function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 Foam: '+S.foam+'cm \u00b7 '+q.tierName+' tier';document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.getElementById('discLabel').textContent=q.pct>0?'('+q.pct+'% off)':'';document.getElementById('hDisp').textContent=S.h;document.getElementById('wDisp').textContent=S.w;document.getElementById('dDisp').textContent=S.d;document.getElementById('gapDisp').textContent=S.gap;document.getElementById('gapVal').textContent=S.gap+' cm';if(S.housing==='system'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('foamSlider').value=S.foam;document.getElementById('foamDisp').textContent=S.foam;document.getElementById('foamLabel').textContent=S.foam+' cm';document.getElementById('gapSlider').value=0.5;document.getElementById('gapDisp').textContent='0.5';document.getElementById('gapVal').textContent='0.5 cm';document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='system'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
 function animateNumber(el,from,to,dur){var start=performance.now();(function tick(now){var p=Math.min((now-start)/dur,1);el.textContent='$'+Math.round(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(performance.now())}
 function bindToggle(gid,key){var btns=document.querySelectorAll('#'+gid+' .tog-btn');btns.forEach(function(btn){btn.addEventListener('click',function(){btns.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');S[key]=btn.dataset.v;renderQuote()})})}
 bindToggle('housingToggle','housing');
 document.querySelectorAll('#elevatorToggle .tog-btn-sm, #parkingToggle .tog-btn-sm').forEach(function(btn){btn.addEventListener('click',function(){this.parentElement.querySelectorAll('.tog-btn-sm').forEach(function(b){b.classList.remove('active')});this.classList.add('active');if(this.closest('#elevatorToggle')){document.getElementById('stairsField').classList.toggle('hidden',this.dataset.v==='yes')}})});
-[{id:'hSlider',key:'h'},{id:'wSlider',key:'w'},{id:'dSlider',key:'d'},{id:'gapSlider',key:'gap'}].forEach(function(item){document.getElementById(item.id).addEventListener('input',function(){S[item.key]=parseFloat(this.value);if(item.key==='gap')window._gapSet=true;renderQuote()})});
+[{id:'hSlider',key:'h'},{id:'wSlider',key:'w'},{id:'dSlider',key:'d'},{id:'gapSlider',key:'gap'},{id:'foamSlider',key:'foam'}].forEach(function(item){document.getElementById(item.id).addEventListener('input',function(){S[item.key]=parseFloat(this.value);if(item.key==='gap')window._gapSet=true;renderQuote()})});
 document.getElementById('artH').addEventListener('input',function(){S.artH=parseInt(this.value)||5;renderQuote()});
 document.getElementById('artW').addEventListener('input',function(){S.artW=parseInt(this.value)||5;renderQuote()});
 document.getElementById('artD').addEventListener('input',function(){S.artD=parseInt(this.value)||1;renderQuote()});
 document.getElementById('qtyMinus').addEventListener('click',function(){if(S.qty>1){S.qty--;renderQuote()}});
 document.getElementById('qtyPlus').addEventListener('click',function(){if(S.qty<20){S.qty++;renderQuote()}});
 function genRef(){document.getElementById('quoteRef').textContent='M-2025-'+(Math.floor(Math.random()*9000)+1000)}
-document.getElementById('btnReview').addEventListener('click',function(){var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();document.getElementById('summaryText').textContent=HL[S.housing]+' \u00b7 '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 Qty: '+(S.qty>1?' \u00b7 $'+q.perUnitDisc+'/ea':'')+' \u00b7 Total: $'+q.total+(extra?' \u00b7 Note: '+extra:'');document.getElementById('step1').classList.add('hidden');document.getElementById('orderFlow').classList.remove('hidden');window.scrollTo({top:document.getElementById('orderFlow').offsetTop+window.scrollY-120,behavior:'smooth'})});
+document.getElementById('btnReview').addEventListener('click',function(){var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();document.getElementById('summaryText').textContent=HL[S.housing]+' \u00b7 '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 Foam: '+S.foam+'cm \u00b7 Qty: '+(S.qty>1?' \u00b7 $'+q.perUnitDisc+'/ea':'')+' \u00b7 Total: $'+q.total+(extra?' \u00b7 Note: '+extra:'');document.getElementById('step1').classList.add('hidden');document.getElementById('orderFlow').classList.remove('hidden');window.scrollTo({top:document.getElementById('orderFlow').offsetTop+window.scrollY-120,behavior:'smooth'})});
 document.getElementById('btnCancel').addEventListener('click',function(){document.getElementById('orderFlow').classList.add('hidden');document.getElementById('step1').classList.remove('hidden')});
-document.getElementById('btnApprove').addEventListener('click',function(){var name=document.getElementById('contactName').value.trim();var phone=document.getElementById('contactPhone').value.trim();var email=document.getElementById('contactEmail').value.trim();var address=document.getElementById('contactAddress').value.trim();if(!name||!phone){alert('Please provide your name and phone number.');return}var elevator=document.querySelector('#elevatorToggle .tog-btn-sm.active').dataset.v;var parking=document.querySelector('#parkingToggle .tog-btn-sm.active').dataset.v;var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();var note=document.getElementById('contactMsg').value.trim();var msg='[MAMORI ORDER]\nClient: '+name+'\nPhone: '+phone+'\n';if(email)msg+='Email: '+email+'\n';if(address)msg+='Address: '+address+'\n';msg+='Elevator: '+elevator+(elevator==='no'&&document.getElementById('contactStairs').value.trim()?' ('+document.getElementById('contactStairs').value.trim()+' floors)':'')+'\nParking: '+parking+'\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nRef: '+document.getElementById('quoteRef').textContent+'\nSystem: '+HL[S.housing]+'\nSize: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm ('+q.tierName+')\nGap: '+S.gap+'cm\nQty: '+S.qty+'\n';if(q.pct>0)msg+='Discount: '+q.pct+'%\n';msg+='\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nTOTAL: $'+q.total+'\nDelivery: quoted separately\n';if(extra)msg+='\nExtra: '+extra;if(note)msg+='\nNote: '+note;try{
+document.getElementById('btnApprove').addEventListener('click',function(){var name=document.getElementById('contactName').value.trim();var phone=document.getElementById('contactPhone').value.trim();var email=document.getElementById('contactEmail').value.trim();var address=document.getElementById('contactAddress').value.trim();if(!name||!phone){alert('Please provide your name and phone number.');return}var elevator=document.querySelector('#elevatorToggle .tog-btn-sm.active').dataset.v;var parking=document.querySelector('#parkingToggle .tog-btn-sm.active').dataset.v;var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();var note=document.getElementById('contactMsg').value.trim();var msg='[MAMORI ORDER]\nClient: '+name+'\nPhone: '+phone+'\n';if(email)msg+='Email: '+email+'\n';if(address)msg+='Address: '+address+'\n';msg+='Elevator: '+elevator+(elevator==='no'&&document.getElementById('contactStairs').value.trim()?' ('+document.getElementById('contactStairs').value.trim()+' floors)':'')+'\nParking: '+parking+'\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nRef: '+document.getElementById('quoteRef').textContent+'\nSystem: '+HL[S.housing]+'\nSize: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm ('+q.tierName+')\nGap: '+S.gap+'cm \u00b7 Foam: '+S.foam+'cm\nQty: '+S.qty+'\n';if(q.pct>0)msg+='Discount: '+q.pct+'%\n';msg+='\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nTOTAL: $'+q.total+'\nDelivery: quoted separately\n';if(extra)msg+='\nExtra: '+extra;if(note)msg+='\nNote: '+note;try{
   var x=new XMLHttpRequest();
   x.open('POST','https://script.google.com/macros/s/AKfycbzFoC__Ascrsh30_2MoMfFOGlpn9-p90sGlSjgBb5_T594gVCW3WzW3wlyQomUyTMK3YA/exec',true);
   x.setRequestHeader('Content-Type','text/plain');
   x.send(JSON.stringify({ref:document.getElementById('quoteRef').textContent,date:new Date().toISOString(),name:name,phone:phone,email:email,address:address,elevator:elevator,parking:parking,product:HL[S.housing],dimensions:S.h+'x'+S.w+'x'+S.d+'cm',qty:S.qty,total:q.total,extra:extra,note:note}));
 }catch(e){}window.open('https://wa.me/85293246171?text='+encodeURIComponent(msg),'_blank');if(email){window.open('mailto:info@mamori.hk?subject='+encodeURIComponent('Order: '+document.getElementById('quoteRef').textContent+' \u2014 '+name)+'&body='+encodeURIComponent(msg),'_blank')}document.getElementById('orderFlow').classList.add('hidden');document.getElementById('step1').classList.remove('hidden')});
-window.addEventListener('resize',resizeCanvas);resizeCanvas();genRef();renderQuote();canvasLoop();
+window.addEventListener('resize',resizeCanvas);genRef();renderQuote();
 </script>
 </body>
 </html>
