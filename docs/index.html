@@ -568,14 +568,133 @@ var S={housing:'system',h:40,w:50,d:5,gap:1,foam:1,qty:1,artH:38,artW:48,artD:3}
 const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6};
 var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
 var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box'};
-var cvs=document.getElementById('bpCanvas'),ctx=cvs.getContext('2d');
+var cvs=null,ctx=null;/*canvas removed*/
 var dpr=window.devicePixelRatio||1;
 var disp={h:40,w:50,d:5,gap:1};
 function resizeCanvas(){var r=cvs.parentElement.getBoundingClientRect();cvs.width=r.width*dpr;cvs.height=r.height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
 function lerp(a,b,t){return a+(b-a)*t}
-function drawCanvas(){var cw=cvs.width/dpr,ch=cvs.height/dpr;ctx.clearRect(0,0,cw,ch);var h=disp.h,w=disp.w,d=disp.d,max=Math.max(h,w,d,20),sc=(ch*.5)/max,gap=S.gap*sc*.10,sH=h*sc,sW=w*sc,sD=d*sc*.4,cx=cw/2,cy=ch/2,aW=Math.min(S.artW*sc,sW-gap*2),aH=Math.min(S.artH*sc,sH-gap*2);ctx.strokeStyle='#000';ctx.lineWidth=2;ctx.fillStyle='#f5f5f5';ctx.beginPath();ctx.rect(cx-sW/2,cy-sH/2,sW,sH);ctx.fill();ctx.stroke();ctx.fillStyle='#e8e8e8';ctx.strokeStyle='#000';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx+sW/2,cy-sH/2);ctx.lineTo(cx+sW/2+sD,cy-sH/2-sD*.5);ctx.lineTo(cx+sW/2+sD,cy+sH/2-sD*.5);ctx.lineTo(cx+sW/2,cy+sH/2);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(cx-sW/2,cy-sH/2);ctx.lineTo(cx-sW/2+sD,cy-sH/2-sD*.5);ctx.lineTo(cx+sW/2+sD,cy-sH/2-sD*.5);ctx.lineTo(cx+sW/2,cy-sH/2);ctx.closePath();ctx.fill();ctx.stroke();var artDepth=Math.min(S.artD*sc*.4,gap*2+6);ctx.fillStyle='rgba(255,130,130,.5)';ctx.strokeStyle='rgba(200,40,40,.7)';ctx.lineWidth=2;ctx.beginPath();ctx.rect(cx-aW/2,cy-aH/2,aW,aH);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(220,100,100,.4)';ctx.strokeStyle='rgba(180,30,30,.5)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx+aW/2,cy-aH/2);ctx.lineTo(cx+aW/2+artDepth,cy-aH/2-artDepth*.5);ctx.lineTo(cx+aW/2+artDepth,cy+aH/2-artDepth*.5);ctx.lineTo(cx+aW/2,cy+aH/2);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(cx-aW/2,cy-aH/2);ctx.lineTo(cx-aW/2+artDepth,cy-aH/2-artDepth*.5);ctx.lineTo(cx+aW/2+artDepth,cy-aH/2-artDepth*.5);ctx.lineTo(cx+aW/2,cy-aH/2);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='rgba(150,20,20,.8)';ctx.font='600 11px Arial,sans-serif';ctx.textAlign='center';ctx.fillText('ARTWORK',cx,cy+4);ctx.fillStyle='rgba(0,0,0,.08)';ctx.fillRect(cx-aW/2,cy-sH/2,aW,gap);ctx.fillRect(cx-aW/2,cy+sH/2-gap,aW,gap);ctx.fillRect(cx-sW/2,cy-sH/2,gap,sH);ctx.fillRect(cx+sW/2-gap,cy-sH/2,gap,sH);ctx.fillStyle='#555';ctx.font='600 10px Arial,sans-serif';ctx.textAlign='center';ctx.fillText('\u2192 '+S.gap+'cm \u2190',cx,cy-sH/2+5);ctx.fillText('\u2192 '+S.gap+'cm \u2190',cx,cy+sH/2-5);ctx.save();ctx.translate(cx-sW/2+6,cy);ctx.rotate(-Math.PI/2);ctx.fillText('\u2192 '+S.gap+'cm \u2190',0,0);ctx.restore();ctx.save();ctx.translate(cx+sW/2-6,cy);ctx.rotate(-Math.PI/2);ctx.fillText('\u2192 '+S.gap+'cm \u2190',0,0);ctx.restore();ctx.fillStyle='#000';ctx.font='500 11px Arial,sans-serif';var wY=cy+sH/2+20;dimLine(cx-sW/2,wY,cx+sW/2,wY);ctx.textAlign='center';ctx.fillText(Math.round(w)+' cm',cx,wY-7);var hX=cx-sW/2-22;dimLine(hX,cy-sH/2,hX,cy+sH/2);ctx.save();ctx.translate(hX-10,cy);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillText(Math.round(h)+' cm',0,0);ctx.restore();dimLine(cx+sW/2+6,cy-sH/2-6,cx+sW/2+sD+6,cy-sH/2-sD*.5-6);ctx.textAlign='left';ctx.fillText(Math.round(d)+' cm',cx+sW/2+sD+12,cy-sH/2-sD*.5)}
-function dimLine(x1,y1,x2,y2){ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();var dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy);if(len<1)return;var nx=-dy/len*4,ny=dx/len*4;[[x1,y1],[x2,y2]].forEach(function(p){ctx.beginPath();ctx.moveTo(p[0]+nx,p[1]+ny);ctx.lineTo(p[0]-nx,p[1]-ny);ctx.stroke()})}
-function canvasLoop(){var sp=.08;disp.h=lerp(disp.h,S.h,sp);disp.w=lerp(disp.w,S.w,sp);disp.d=lerp(disp.d,S.d,sp);drawCanvas();requestAnimationFrame(canvasLoop)}
+function drawCanvas(){
+'
+        'const cw=cvs.width/dpr,ch=cvs.height/dpr;
+'
+        'ctx.clearRect(0,0,cw,ch);
+'
+        'const h=disp.h,w=disp.w,d=disp.d;
+'
+        'const max=Math.max(h,w,d,20),sc=(ch*.5)/max;
+'
+        'const sH=h*sc,sW=w*sc,sD=d*sc*.4,cx=cw/2,cy=ch/2;
+'
+        'const gapPx=S.gap*sc*0.15;
+'
+        'const aW=Math.min(S.artW*sc,sW-gapPx*2),aH=Math.min(S.artH*sc,sH-gapPx*2);
+'
+        '
+'
+        '// Box outline — black
+'
+        'ctx.strokeStyle="#000";ctx.lineWidth=1.8;ctx.fillStyle="# fff";
+'
+        'ctx.beginPath();ctx.rect(cx-sW/2,cy-sH/2,sW,sH);ctx.fill();ctx.stroke();
+'
+        '
+'
+        '// Box depth (3D effect) — light gray
+'
+        'ctx.fillStyle="#e8e8e8";ctx.strokeStyle="#000";ctx.lineWidth=1;
+'
+        'ctx.beginPath();ctx.moveTo(cx+sW/2,cy-sH/2);ctx.lineTo(cx+sW/2+sD,cy-sH/2-sD*.5);
+'
+        'ctx.lineTo(cx+sW/2+sD,cy+sH/2-sD*.5);ctx.lineTo(cx+sW/2,cy+sH/2);ctx.closePath();ctx.fill();ctx.stroke();
+'
+        'ctx.beginPath();ctx.moveTo(cx-sW/2,cy-sH/2);ctx.lineTo(cx-sW/2+sD,cy-sH/2-sD*.5);
+'
+        'ctx.lineTo(cx+sW/2+sD,cy-sH/2-sD*.5);ctx.lineTo(cx+sW/2,cy-sH/2);ctx.closePath();ctx.fill();ctx.stroke();
+'
+        '
+'
+        '// Gap highlight — RED semi-transparent between artwork and box wall
+'
+        'ctx.fillStyle="rgba(212,136,152,.35)";
+'
+        '// Top gap
+'
+        'ctx.fillRect(cx-aW/2,cy-sH/2,aW,gapPx);
+'
+        '// Bottom gap
+'
+        'ctx.fillRect(cx-aW/2,cy+sH/2-gapPx,aW,gapPx);
+'
+        '// Left gap
+'
+        'ctx.fillRect(cx-sW/2,cy-sH/2,gapPx,sH);
+'
+        '// Right gap
+'
+        'ctx.fillRect(cx+sW/2-gapPx,cy-sH/2,gapPx,sH);
+'
+        '
+'
+        '// Artwork — blue
+'
+        'ctx.fillStyle="rgba(90,140,210,.50)";ctx.strokeStyle="rgba(60,110,180,.80)";ctx.lineWidth=2;
+'
+        'ctx.beginPath();ctx.rect(cx-aW/2,cy-aH/2,aW,aH);ctx.fill();ctx.stroke();
+'
+        '
+'
+        '// Artwork depth (3D)
+'
+        'const artDepth=Math.min(S.artD*sc*.4,gapPx*2+6);
+'
+        'ctx.fillStyle="rgba(70,110,170,.35)";ctx.strokeStyle="rgba(50,90,150,.50)";ctx.lineWidth=1;
+'
+        'ctx.beginPath();ctx.moveTo(cx+aW/2,cy-aH/2);ctx.lineTo(cx+aW/2+artDepth,cy-aH/2-artDepth*.5);
+'
+        'ctx.lineTo(cx+aW/2+artDepth,cy+aH/2-artDepth*.5);ctx.lineTo(cx+aW/2,cy+aH/2);ctx.closePath();ctx.fill();ctx.stroke();
+'
+        'ctx.beginPath();ctx.moveTo(cx-aW/2,cy-aH/2);ctx.lineTo(cx-aW/2+artDepth,cy-aH/2-artDepth*.5);
+'
+        'ctx.lineTo(cx+aW/2+artDepth,cy-aH/2-artDepth*.5);ctx.lineTo(cx+aW/2,cy-aH/2);ctx.closePath();ctx.fill();ctx.stroke();
+'
+        '
+'
+        '// Artwork label
+'
+        'ctx.fillStyle="rgba(40,80,140,.85)";ctx.font="600 11px Arial,sans-serif";ctx.textAlign="center";
+'
+        'ctx.fillText("ARTWORK",cx,cy+4);
+'
+        '
+'
+        '// Gap arrows — RED matching the gap highlight
+'
+        'ctx.fillStyle="#d48898";ctx.font="600 10px Arial,sans-serif";ctx.textAlign="center";
+'
+        'ctx.fillText("\u2192 "+S.gap+"cm gap \u2190",cx,cy-sH/2+gapPx*0.65);
+'
+        'ctx.fillText("\u2192 "+S.gap+"cm gap \u2190",cx,cy+sH/2-gapPx*0.65);
+'
+        'ctx.save();ctx.translate(cx-sW/2+gapPx*0.65,cy);ctx.rotate(-Math.PI/2);
+'
+        'ctx.fillText("\u2192 "+S.gap+"cm gap \u2190",0,0);ctx.restore();
+'
+        'ctx.save();ctx.translate(cx+sW/2-gapPx*0.65,cy);ctx.rotate(-Math.PI/2);
+'
+        'ctx.fillText("\u2192 "+S.gap+"cm gap \u2190",0,0);ctx.restore();
+'
+        '
+'
+        '// Dimension lines
+'
+        'ctx.fillStyle="#000";ctx.font="500 11px Arial,sans-serif";
+'
+        'const wY=cy+sH/2+20;dimLine(cx-sW/2,wY,cx+sW/2,wY);ctx.textAlign="center";ctx.fillText(Math.round(w)+" cm",cx,wY-7);
+'
+        'const hX=cx-sW/2-22;dimLine(hX,cy-sH/2,hX,cy+sH/2);ctx.save();ctx.translate(hX-10,cy);ctx.rotate(-Math.PI/2);ctx.textAlign="center";ctx.fillText(Math.round(h)+" cm",0,0);ctx.restore();
+'
+        'dimLine(cx+sW/2+6,cy-sH/2-6,cx+sW/2+sD+6,cy-sH/2-sD*.5-6);ctx.textAlign="left";ctx.fillText(Math.round(d)+" cm",cx+sW/2+sD+12,cy-sH/2-sD*.5)}function dimLine(x1,y1,x2,y2){ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();var dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy);if(len<1)return;var nx=-dy/len*4,ny=dx/len*4;[[x1,y1],[x2,y2]].forEach(function(p){ctx.beginPath();ctx.moveTo(p[0]+nx,p[1]+ny);ctx.lineTo(p[0]-nx,p[1]-ny);ctx.stroke()})}
+function canvasLoop(){return}/*removed*/;disp.h=lerp(disp.h,S.h,sp);disp.w=lerp(disp.w,S.w,sp);disp.d=lerp(disp.d,S.d,sp);drawCanvas();requestAnimationFrame(canvasLoop)}
 function getQuote(){const base=calcPrice(S.h,S.w,S.d);const perUnit=Math.round(base*PRICE_RATIO[S.housing]);const vol=[...VOL].reverse().find(v=>S.qty>=v.min),pct=vol?vol.pct:0;const subTotal=perUnit*S.qty,discAmt=Math.round(subTotal*pct/100),total=subTotal-discAmt;return{base,perUnit,subTotal,discAmt,total,pct,tierName:S.h+S.w<=60?'Small':S.h+S.w<=140?'Medium':'Large',perUnitDisc:Math.round(perUnit*(100-pct)/100)}}
 var prevTotal=0;
 function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 '+(S.housing==='cover'?'Foam: '+S.foam+'cm':'Gap: '+S.gap+'cm')+' \u00b7 '+q.tierName+' tier';document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.getElementById('discLabel').textContent=q.pct>0?'('+q.pct+'% off)':'';document.getElementById('hDisp').textContent=S.h;document.getElementById('wDisp').textContent=S.w;document.getElementById('dDisp').textContent=S.d;document.getElementById('gapDisp').textContent=S.gap;document.getElementById('gapVal').textContent=S.gap+' cm';if(S.housing==='cover'){document.getElementById('gapGroup').style.display='none';document.getElementById('foamGroup').style.display='block';document.getElementById('gapNoteText').textContent='Foam padding replaces gap for Cover Box'}else{document.getElementById('gapGroup').style.display='block';document.getElementById('foamGroup').style.display='none'}if(S.housing==='system'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('foamSlider').value=S.foam;document.getElementById('foamDisp').textContent=S.foam;document.getElementById('foamLabel').textContent=S.foam+' cm';document.getElementById('gapSlider').value=0.5;document.getElementById('gapDisp').textContent='0.5';document.getElementById('gapVal').textContent='0.5 cm';document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='system'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='Snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
