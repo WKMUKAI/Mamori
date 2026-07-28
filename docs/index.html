@@ -2,634 +2,244 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Mamori | Protective Packaging — Hong Kong</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#fff;--surface:#fff;--accent:#000;--accent-dim:#333;
-  --text-1:#111;--text-2:#444;--text-3:#999;
-  --border:#e0e0e0;--green:#2a7a5a;
-  --sans:'Poppins',Arial,Helvetica,sans-serif;
-  --serif:'Poppins',Arial,Helvetica,sans-serif;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--text-2);background:var(--bg)}
-.container{max-width:1080px;margin:0 auto;padding:0 32px}
-a{color:inherit}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:100;padding:16px 0;background:rgba(250,248,245,.95);border-bottom:1px solid var(--border)}
+:root{--bg:#fff;--accent:#000;--text-1:#111;--text-2:#444;--text-3:#999;--border:#e0e0e0;--sans:Arial,sans-serif}
+body{font:17px/1.7 var(--sans);color:var(--text-2);background:var(--bg)}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:100;padding:12px 0;background:#fff;border-bottom:1px solid var(--border)}
 nav .container{display:flex;justify-content:space-between;align-items:center}
-.nav-logo img{height:60px;width:auto;display:block}
-.nav-right{display:flex;align-items:center;gap:28px}
-.nav-links{display:flex;gap:22px;list-style:none}
-.nav-links a{font-size:15px;font-weight:500;color:var(--text-2);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:var(--accent)}
-.nav-order{font-size:13px;font-weight:500;color:#fff;background:var(--accent);padding:10px 24px;text-decoration:none;border-radius:8px;transition:all .25s}
-.nav-order:hover{background:var(--accent-dim);transform:translateY(-1px)}
-.mobile-btn{display:none;background:none;border:none;font-size:22px;color:var(--text-2);cursor:pointer;padding:4px}
-
-/* HERO */
-.hero{padding:80px 0 40px}
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;min-height:70vh}
-.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:20px}
-h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.5vw,52px);line-height:1.1;color:var(--text-1);letter-spacing:-.025em;margin-bottom:20px}
-h1 em{font-style:italic;color:var(--accent)}
-.hero-sub{font-size:17px;line-height:1.75;color:var(--text-2);max-width:440px;margin-bottom:36px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.hero-video{width:100%;border-radius:16px;overflow:hidden;background:var(--border)}
-.hero-video video{width:100%;display:block}
-
-/* BUTTONS */
-.btn-primary{font-family:var(--sans);font-size:14px;font-weight:500;color:#fff;background:var(--accent);padding:14px 28px;border:none;border-radius:8px;text-decoration:none;transition:all .25s;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.15)}
-.btn-secondary{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--text-2);padding:14px 28px;border:1.5px solid var(--border);border-radius:8px;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
-.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
-.btn-ghost{padding:14px 20px;background:var(--surface);color:var(--text-2);font-family:var(--sans);font-size:13px;font-weight:500;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-
-/* SECTION LABEL */
-.section-label{text-align:center;margin-bottom:48px}
-.section-label .tag,.phil-content .tag,.config-header .tag{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px}
-.section-label h2,.phil-content h2,.config-header h2,.contact h2{font-family:var(--serif);font-size:clamp(26px,2.8vw,36px);font-weight:400;color:var(--text-1);letter-spacing:-.02em;margin-bottom:8px}
-.section-label p,.config-header p{color:var(--text-3);max-width:520px;margin:0 auto;font-size:16px;line-height:1.7}
-
-/* PRODUCTS */
-.products{padding:80px 0;border-top:1px solid var(--border)}
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.prod-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border .3s}
-.prod-card:hover{border-color:var(--text-3)}
-.carousel-wrap{position:relative;overflow:hidden;background:#f5f3ef}
-.carousel-track{display:flex;transition:transform .5s ease}
-.carousel-track img{width:100%;flex-shrink:0;aspect-ratio:4/3;object-fit:cover;display:block}
-.carousel-nav{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:2}
-.carousel-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;transition:all .3s}
-.carousel-dot.active{background:#fff;width:20px;border-radius:4px}
-.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.8);border:none;cursor:pointer;font-size:16px;color:var(--text-2);display:flex;align-items:center;justify-content:center;transition:all .25s;opacity:0}
-.carousel-wrap:hover .carousel-arrow{opacity:1}
-.carousel-arrow:hover{background:#fff;color:var(--accent)}
-.carousel-arrow.prev{left:8px}
-.carousel-arrow.next{right:8px}
-.prod-body{padding:24px}
-.prod-body h3{font-size:17px;font-weight:500;color:var(--text-1);margin-bottom:6px}
-.prod-body .prod-desc{font-size:14px;color:var(--text-3);line-height:1.7;margin-bottom:14px}
-.prod-body .prod-uses{font-size:11px;color:var(--accent-dim);font-weight:500;display:flex;gap:8px;flex-wrap:wrap}
-.prod-body .prod-uses span{background:rgba(0,0,0,.04);padding:4px 10px;border-radius:4px}
-.coming-soon{background:var(--surface);border:1px dashed var(--border);border-radius:14px;padding:40px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:all .3s}
-.coming-soon:hover{border-color:var(--text-3)}
-.coming-soon .cs-icon{font-size:28px;opacity:.3}
-.coming-soon h3{font-size:16px;font-weight:500;color:var(--text-2)}
-.coming-soon p{font-size:13px;color:var(--text-3)}
-
-/* PHILOSOPHY */
-.philosophy{padding:100px 0;border-top:1px solid var(--border)}
-.phil-content{max-width:680px;margin:0 auto 48px;text-align:center}
-.phil-content .tag{margin-bottom:12px}
-.phil-content h2{margin-bottom:24px}
-.phil-content .phil-text{font-size:17px;line-height:1.8;color:var(--text-2)}
-.phil-content .phil-text strong{color:var(--text-1)}
-.phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.phil-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px 24px;transition:border .2s}
-.phil-card:hover{border-color:var(--text-3)}
-.phil-card .pc-icon{font-size:24px;margin-bottom:12px;display:block}
-.phil-card h3{font-size:17px;font-weight:500;color:var(--text-1);margin-bottom:6px}
-.phil-card p{font-size:15px;color:var(--text-3);line-height:1.7}
-
-/* FEATURES */
-.features{padding:64px 0;border-top:1px solid var(--border);background:#fafafa}
-.features-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.feature-badge{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;transition:border .15s}
-.feature-badge:hover{border-color:var(--text-3)}
-.feature-badge .f-icon{font-size:16px;flex-shrink:0}
-.feature-badge .f-title{font-size:13px;font-weight:500;color:var(--text-1);margin-bottom:1px}
-.feature-badge .f-sub{font-size:12px;color:var(--text-3)}
-
-/* CONFIGURATOR */
-.config{padding:80px 0;border-top:1px solid var(--border)}
-.config-header{text-align:center;margin-bottom:48px}
-.config-header .tag{margin-bottom:8px}
-.config-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
-.canvas-panel{position:sticky;top:80px;background:var(--bg);border-radius:16px;border:1px solid var(--border);overflow:hidden}
-.blueprint{width:100%;aspect-ratio:4/3;position:relative;background:#fff;border:1px solid #eee}
-.blueprint canvas{width:100%;height:100%}
-.bp-tag{position:absolute;font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.04em}
-.bp-tag.tr{top:16px;right:16px}
-.bp-tag.bl{bottom:16px;left:16px;color:var(--accent);font-family:var(--serif);font-size:13px}
-.canvas-meta{display:flex;justify-content:space-between;padding:16px 20px;border-top:1px solid var(--border);font-size:12px;color:var(--text-3)}
-.canvas-meta .live{color:var(--accent);font-weight:500}
-.controls{display:flex;flex-direction:column;gap:20px}
-.ctrl-group{border:1px solid var(--border);border-radius:12px;padding:20px;background:var(--bg)}
-.ctrl-label{font-size:12px;font-weight:500;color:var(--text-1);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
-.ctrl-label .val{color:var(--accent);font-weight:400;font-family:var(--serif);font-size:18px}
-.tog-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:8px 0}
-.tog-btn{flex:1;min-width:70px;padding:10px 8px;font-family:var(--sans);font-size:12px;font-weight:500;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-3);cursor:pointer;transition:all .2s;text-align:center}
-.tog-btn.active{border-color:var(--accent);background:var(--accent);color:#fff}
-.tog-btn:hover:not(.active){border-color:var(--text-3);color:var(--accent)}
-.tog-label{font-size:13px;color:var(--text-2);flex:1}
-.tog-btn-sm{padding:6px 16px;font-size:12px;font-weight:500;border:1px solid var(--border);background:#fff;cursor:pointer;transition:all .15s;border-radius:6px;font-family:var(--sans)}
-.tog-btn-sm.active{border-color:var(--accent);background:var(--accent);color:#fff}
-.tog-btn-sm:hover:not(.active){border-color:#aaa}
-.slider-group{margin-bottom:14px}
-.slider-group:last-child{margin-bottom:0}
-.slider-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.slider-header label{font-size:13px;color:var(--text-3)}
-.slider-header .sval{font-size:18px;font-weight:500;color:var(--text-1);font-family:var(--serif)}
-.slider-header .sval span{font-size:12px;color:var(--text-3);font-weight:400}
-input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
-input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);cursor:pointer;border:none}
-.artwork-size-row{display:flex;align-items:center;gap:10px}
-.art-size-field{flex:1}
-.art-size-field label{display:block;font-size:10px;font-weight:500;color:var(--text-3);margin-bottom:4px;letter-spacing:.05em;text-transform:uppercase}
-.art-size-field input{width:100%;text-align:center;font-size:18px;font-weight:500;padding:10px 8px;border:1.5px solid var(--border);border-radius:8px;font-family:var(--sans)}
-.art-size-x{font-size:16px;color:var(--text-3)}
-.art-size-unit{font-size:11px;color:var(--text-3)}
-.qty-group{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
-.qty-btn{flex:0 0 44px;height:44px;background:var(--surface);color:var(--text-2);border:none;font-size:20px;cursor:pointer;transition:background .2s}
-.qty-btn:hover{background:#f5f5f5;color:var(--accent)}
-.qty-val{flex:1;text-align:center;font-size:24px;font-weight:500;color:var(--text-1);height:44px;display:flex;align-items:center;justify-content:center;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border)}
-textarea.input-field{width:100%;padding:12px;font-family:var(--sans);font-size:13px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-1);resize:vertical;min-height:60px;transition:border-color .2s}
-textarea.input-field:focus{outline:none;border-color:var(--accent)}
-
-/* QUOTE */
-.quote-box{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
-.quote-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
-.quote-header .brand{font-family:var(--serif);font-size:16px;color:var(--text-1)}
-.quote-header .ref{font-size:12px;color:var(--text-3);letter-spacing:.04em}
-.ql{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 20px}
-.ql.hidden{display:none}
-.ql-left .ql-name{font-size:14px;font-weight:500;color:var(--text-1);margin-bottom:2px}
-.ql-left .ql-detail{font-size:12px;color:var(--text-3)}
-.ql-amt{font-size:18px;font-weight:500;color:var(--text-1);white-space:nowrap;margin-left:16px;flex-shrink:0}
-.ql-sep{height:1px;background:var(--border);margin:0 20px}
-.ql .ql-free{color:var(--green);font-size:13px;font-weight:500;align-self:center;white-space:nowrap}
-.quote-sub{display:flex;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--border);font-size:14px}
-.quote-sub .val{font-weight:500;color:var(--text-1)}
-.quote-disc{display:flex;justify-content:space-between;padding:10px 20px;font-size:13px;color:var(--green)}
-.quote-disc.hidden{display:none}
-.quote-total{display:flex;justify-content:space-between;align-items:flex-end;padding:20px;border-top:2px solid var(--border);background:rgba(0,0,0,.02)}
-.quote-total .lbl{font-size:12px;color:var(--accent-dim);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
-.quote-total .per{font-size:13px;color:var(--text-3)}
-.quote-total .num{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--text-1);line-height:1}
-.quote-actions{padding:16px 20px;display:flex;gap:10px;flex-wrap:wrap}
-.quote-actions .btn-primary{flex:1;justify-content:center;font-size:13px;min-width:140px}
-
-/* ORDER */
-.order-flow{padding:16px 0;display:block}
-.order-flow.hidden{display:none!important}
-.order-summary{font-size:13px;color:var(--text-3);line-height:1.7;margin-bottom:14px;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
-.order-summary strong{color:var(--text-1);font-weight:500}
-.order-form{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.order-form .input-field{width:100%;padding:12px;font-family:var(--sans);font-size:13px;border:1.5px solid var(--border);border-radius:8px;background:var(--surface)}
-.order-actions{display:flex;gap:10px}
-.order-actions .btn-primary{flex:1;justify-content:center}
-.stairs-field.hidden{display:none!important}
-
-/* CONTACT */
-.contact{padding:80px 0;border-top:1px solid var(--border);text-align:center}
-.contact h2{margin-bottom:12px}
-.contact p{color:var(--text-3);max-width:400px;margin:0 auto 28px;font-size:16px}
-.contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-
-/* FOOTER */
-footer{padding:40px 0;border-top:1px solid var(--border)}
-footer .container{display:flex;justify-content:space-between;align-items:center}
-.foot-left{display:flex;align-items:center;gap:16px}
-.foot-left img{height:26px;opacity:.5}
-.foot-left span{font-size:13px;color:var(--text-3)}
-.foot-right{display:flex;gap:20px}
-.foot-right a{font-size:13px;color:var(--text-3);text-decoration:none;transition:color .2s}
-.foot-right a:hover{color:var(--accent)}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero .container{grid-template-columns:1fr;gap:32px;min-height:auto}
-  .prod-grid{grid-template-columns:1fr}
-  .phil-grid{grid-template-columns:1fr}
-  .features-inner{grid-template-columns:repeat(2,1fr)}
-  .config-layout{grid-template-columns:1fr}
-  .canvas-panel{position:relative;top:0}
-  .nav-links{display:none}
-  .mobile-btn{display:block}
-  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(250,248,245,.98);padding:20px 28px;border-bottom:1px solid var(--border);gap:12px}
-}
-@media(max-width:600px){
-  .container{padding:0 20px}
-  .features-inner{grid-template-columns:1fr}
-  footer .container{flex-direction:column;gap:12px;text-align:center}
-  .quote-actions .btn-primary{min-width:100%}
-}
+.nav-logo img{height:50px}
+nav a{color:var(--text-2);text-decoration:none;font-size:14px;font-weight:500}
+.btn{display:inline-block;padding:10px 22px;font-size:14px;font-weight:500;border-radius:8px;text-decoration:none;cursor:pointer;border:none;font-family:var(--sans)}
+.btn-black{background:#000;color:#fff}.btn-black:hover{background:#333}
+.btn-outline{border:1.5px solid var(--border);background:#fff;color:var(--text-2)}.btn-outline:hover{border-color:#000}
+.hero{padding:60px 0 30px;text-align:center}
+.hero h1{font-size:36px;color:var(--text-1);margin-bottom:12px}
+.hero p{color:var(--text-3);max-width:500px;margin:0 auto 20px}
+.products,.config,.contact{padding:50px 0;border-top:1px solid var(--border)}
+h2{font-size:28px;color:var(--text-1);text-align:center;margin-bottom:24px}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.prod-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;text-align:center}
+.prod-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.prod-card h3{font-size:14px;font-weight:500;padding:12px 8px 4px;color:var(--text-1)}
+.prod-card p{font-size:12px;color:var(--text-3);padding:0 8px 12px}
+.config-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto}
+.preview-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.preview-panel img{width:100%;display:block}
+.preview-meta{padding:12px 16px;border-top:1px solid var(--border);font-size:12px;display:flex;justify-content:space-between;color:var(--text-3)}
+.controls{display:flex;flex-direction:column;gap:14px}
+.ctrl-group{border:1px solid var(--border);border-radius:10px;padding:16px}
+.ctrl-label{font-size:13px;font-weight:500;color:var(--text-1);margin-bottom:10px}
+.tog-row{display:flex;gap:4px;flex-wrap:wrap}
+.tog-btn{flex:1;padding:8px 6px;font-size:11px;border:1.5px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;text-align:center;transition:all .2s}
+.tog-btn.active{background:#000;color:#fff;border-color:#000}
+.dim-row{display:flex;align-items:center;gap:8px}
+.dim-row input{width:70px;text-align:center;font-size:16px;padding:8px;border:1.5px solid var(--border);border-radius:6px}
+.dim-row span{color:var(--text-3)}
+.qty-row{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:6px;width:fit-content}
+.qty-row button{width:36px;height:36px;border:none;background:#f5f5f5;font-size:18px;cursor:pointer}
+.qty-row .qty-val{width:50px;text-align:center;font-size:18px;font-weight:500}
+.order-summary{display:none;border:1px solid var(--accent);border-radius:10px;padding:14px;margin-bottom:8px;background:#fafafa}
+.order-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:13px;border-bottom:1px solid #eee}
+.order-item .remove{color:#999;cursor:pointer;margin-left:8px;font-size:16px}
+.order-total{text-align:right;font-weight:500;font-size:14px;margin-top:6px}
+.quote-box{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.quote-line{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+.quote-line .name{font-size:13px;font-weight:500}
+.quote-line .detail{font-size:11px;color:var(--text-3)}
+.quote-line .price{font-size:18px;font-weight:500}
+.quote-divider{height:1px;background:var(--border);margin:0 16px}
+.total-line{display:flex;justify-content:space-between;align-items:center;padding:16px}
+.total-line .price{font-size:32px;font-weight:500}
+.btn-full{display:block;width:100%;padding:12px;text-align:center;margin-top:8px}
+.order-form{display:none}
+.order-form.show{display:block}
+.order-form input{width:100%;padding:10px;margin-bottom:8px;border:1.5px solid var(--border);border-radius:6px;font-size:14px}
+.tog-sm{font-size:12px;padding:6px 14px;border:1px solid var(--border);background:#fff;border-radius:6px;cursor:pointer}
+.tog-sm.active{background:#000;color:#fff;border-color:#000}
+.flex{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.txt-sm{font-size:12px;color:var(--text-3)}
+.hidden{display:none!important}
+.contact{text-align:center}
+footer{padding:30px 0;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--text-3)}
+@media(max-width:768px){.config-layout{grid-template-columns:1fr}.prod-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a href="#" class="nav-logo"><img src="images/mamori_logo_black.svg" alt="Mamori"></a>
-    <div class="nav-right">
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#products">Products</a></li>
-        <li><a href="#philosophy">About</a></li>
-        <li><a href="#configure">Configure</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#configure" class="nav-order">Get a quote</a>
-      <button class="mobile-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
-    </div>
-  </div>
-</nav>
+<nav><div class="container">
+<a href="#" class="nav-logo"><img src="images/mamori_logo_black.svg" alt="Mamori"></a>
+<a href="#configure" class="btn btn-black">Get a quote</a>
+</div></nav>
 
-<section class="hero">
-  <div class="container">
-    <div>
-      <div class="hero-eyebrow"> &nbsp;MAMORI — Japanese protective boxes, handcrafted in Hong Kong</div>
-      <h1>Protective packaging<br>for your artwork</h1>
-      <p class="hero-sub">Protective boxes built to your artwork's exact dimensions.</p>
-      <div class="hero-actions">
-        <a href="#configure" class="btn-primary">Configure your box &rarr;</a>
-        <a href="https://wa.me/85293246171" target="_blank" class="btn-secondary">WhatsApp</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-video">
-        <video autoplay muted loop playsinline preload="auto" style="width:100%">
-          <source src="images/intro-video.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="hero"><div class="container">
+<h1>Protective packaging<br>for your artwork</h1>
+<p>Custom boxes built to your artwork's exact dimensions. Japanese materials, made in Hong Kong.</p>
+<a href="#configure" class="btn btn-black">Configure your box</a>
+</div></section>
 
-<section class="products" id="products">
-  <div class="container">
-    <div class="section-label">
-      <div class="tag">OUR PRODUCTS</div>
-      <h2>Housing systems</h2>
-      <p>Every box is custom-fabricated to your artwork's exact dimensions. Choose your system below.</p>
-    </div>
-    <div class="prod-grid">
-      <div class="prod-card">
-        <div class="carousel-wrap">
-          <div class="carousel-track">
-            <img src="images/slidebox-main.jpeg" alt="Slide Box" loading="lazy">
-            <img src="images/slidebox-detail-1.jpeg" alt="Slide Box detail" loading="lazy">
-            <img src="images/slidebox-detail-4.jpeg" alt="Slide Box close-up" loading="lazy">
-          </div>
-          <button class="carousel-arrow prev" onclick="carouselPrev(this)">&#8249;</button>
-          <button class="carousel-arrow next" onclick="carouselNext(this)">&#8250;</button>
-          <div class="carousel-nav"></div>
-        </div>
-        <div class="prod-body">
-          <h3>Slide Box</h3>
-          <p class="prod-desc">Vertical-entry tray with cord-wrap closure. Engineered for frequent gallery handling and long-term archival safety.</p>
-          <div class="prod-uses"><span>Gallery storage</span><span>Archival</span><span>Daily access</span></div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="carousel-wrap">
-          <div class="carousel-track">
-            <img src="images/Ukon%20Bag.png" alt="Ukon Bag" loading="lazy">
-            <img src="images/slidebox-detail-2.jpeg" alt="Slide Box with Ukon Bag" loading="lazy">
-          </div>
-          <button class="carousel-arrow prev" onclick="carouselPrev(this)">&#8249;</button>
-          <button class="carousel-arrow next" onclick="carouselNext(this)">&#8250;</button>
-          <div class="carousel-nav"></div>
-        </div>
-        <div class="prod-body">
-          <h3>Slide Box + Ukon Bag</h3>
-          <p class="prod-desc">Our complete system &mdash; slide box with a turmeric-dyed cotton inner wrap. Natural insect repellent and breathable protection.</p>
-          <div class="prod-uses"><span>Museum-grade</span><span>Insect protection</span><span>Premium</span></div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="carousel-wrap">
-          <div class="carousel-track">
-            <img src="images/slidebox-main.jpeg" alt="Cover Box + Foam Padding">
-          </div>
-        </div>
-        <h3>Cover Box + Foam Padding <span style="font-size:12px;opacity:.5;font-weight:400">(coming soon)</span></h3>
-        <p>Cardboard box with protective foam padding for maximum protection. Custom thickness from 0.5cm to 3cm.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="products" id="products"><div class="container">
+<h2>Housing systems</h2>
+<div class="prod-grid">
+<div class="prod-card"><img src="images/slidebox-main.jpeg"><h3>Slide Box + Ukon Bag</h3><p>Complete system with turmeric-dyed cotton inner wrap</p></div>
+<div class="prod-card"><img src="images/slidebox-detail-1.jpeg"><h3>Slide Box</h3><p>Vertical-entry tray with cord-wrap closure</p></div>
+<div class="prod-card"><img src="images/slidebox-main.jpeg"><h3>Cover Box</h3><p>Simple protective cover</p></div>
+<div class="prod-card"><img src="images/slidebox-main.jpeg"><h3>Cover Box + Foam<span class="txt-sm"> (coming soon)</span></h3><p>Protective foam padding, 0.5-3cm</p></div>
+</div>
+</div></section>
 
-<section class="philosophy">
-  <div class="container">
-    <div class="phil-content">
-      <div class="tag">OUR PHILOSOPHY</div>
-      <h2>Precision. Safety. Speed. <span style="font-weight:400;color:var(--text-3);font-size:18px">&#8201;</span></h2>
-      <p class="phil-text">
-        Hong Kong is one of the world's great art cities &mdash; a crossroads of galleries,
-        auction houses, and private collections operating at extraordinary pace.
-        The packaging should match.<br><br>
-        <strong>We built Mamori to set that standard.</strong><br><br>
-        Every box we engineer is designed for this city &mdash; our climate, our transit
-        conditions, our expectations. Traditional Japanese craft meets modern materials
-        science, delivering museum-grade protection that's accessible, practical,
-        and made right here in Hong Kong.
-      </p>
-    </div>
-    <div class="phil-grid">
-      <div class="phil-card">
-        <div class="pc-icon">&#127919;</div>
-        <h3>Precision</h3>
-        <p>Made-to-order based on your exact specifications. Every box is custom-fabricated to your artwork's precise dimensions.</p>
-      </div>
-      <div class="phil-card">
-        <div class="pc-icon">&#128737;&#65039;</div>
-        <h3>Safety</h3>
-        <p>Acid-free, mould-resistant, and water-repellent. Museum-grade materials built for Hong Kong's subtropical climate.</p>
-      </div>
-      <div class="phil-card">
-        <div class="pc-icon">&#9889;</div>
-        <h3>Speed</h3>
-        <p>Ready within 5&ndash;7 business days. Direct communication with our studio &mdash; no middlemen, no delays.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="config" id="configure"><div class="container">
+<h2>Configure your box</h2>
 
-<section class="features">
-  <div class="container">
-    <div class="features-inner">
-      <div class="feature-badge"><div class="f-icon">&#128737;&#65039;</div><div class="f-text"><div class="f-title">Anti-Mould</div><div class="f-sub">Treated to help prevent mould</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#128167;</div><div class="f-text"><div class="f-title">Water Resistant</div><div class="f-sub">Treated to resist water ingress</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#9851;&#65039;</div><div class="f-text"><div class="f-title">Eco Core</div><div class="f-sub">Recyclable cardboard</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#127471;&#127477;</div><div class="f-text"><div class="f-title">Japanese Board</div><div class="f-sub">Thin, lightweight &amp; resistant</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#128666;</div><div class="f-text"><div class="f-title">HK Island $120</div><div class="f-sub">Kowloon $180 &bull; Free WCH pick up</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#9889;</div><div class="f-text"><div class="f-title">5&ndash;7 Days</div><div class="f-sub">Fast turnaround</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#128207;</div><div class="f-text"><div class="f-title">Custom Sizing</div><div class="f-sub">Tailored to each client's needs</div></div></div>
-      <div class="feature-badge"><div class="f-icon">&#129719;</div><div class="f-text"><div class="f-title">Lightweight</div><div class="f-sub">High strength-to-weight ratio</div></div></div>
-    </div>
-  </div>
-</section>
+<div class="config-layout">
 
-<section class="config" id="configure">
-  <div class="container">
-    <div class="config-header">
-      <div class="tag">BUILD &amp; QUOTE</div>
-      <h2>Configure your box</h2>
-      <p>Set your artwork dimensions, choose a system, and get a live quotation. No commitment &mdash; just the numbers.</p>
-    </div>
-    <div class="config-layout">
-      <div class="canvas-panel" style="position:relative;background:#fff;border-radius:16px;border:1px solid var(--border);overflow:hidden">
-        <div class="blueprint" style="width:100%;aspect-ratio:4/3;position:relative;background:#fff;display:flex;align-items:center;justify-content:center">
-          <img id="systemPreviewImg" src="images/slidebox-main.jpeg" alt="Product preview" style="width:100%;height:100%;object-fit:cover;display:block">
-          <span class="bp-tag tr" id="tierLabel" style="position:absolute;top:12px;right:12px;background:#000;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:600">MEDIUM</span>
-          <span class="bp-tag bl" style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.7);color:#fff;padding:4px 8px;border-radius:4px;font-size:10px">mamori</span>
-        </div>
-        <div class="canvas-meta">
-          <span id="metaHousing">Slide Box + Ukon Bag</span>
-          <span class="live" id="metaDims">40 &times; 50 &times; 5 cm</span>
-        </div>
-      </div>
-      <div class="controls">
-        <div class="ctrl-group">
-          <div class="ctrl-label">Choose your system</div>
-          <div class="tog-row" id="housingToggle">
-            <button class="tog-btn active" data-v="system">Slide Box + Ukon Bag</button>
-            <button class="tog-btn" data-v="slide">Slide Box</button>
-            <button class="tog-btn" data-v="cover">Cover Box</button>
-            <button class="tog-btn" data-v="cover_foam">Cover Box + Foam Padding <span style="font-size:10px;opacity:.6;font-weight:400">(coming soon)</span></button>
-          </div>
-        </div>
-        <div class="ctrl-group">
-          <div class="ctrl-label">Artwork Size</div>
-          <div class="artwork-size-row">
-            <div class="art-size-field"><label>Height</label><input type="number" id="artH" value="38" min="5" max="200"></div>
-            <span class="art-size-x">&times;</span>
-            <div class="art-size-field"><label>Width</label><input type="number" id="artW" value="48" min="5" max="200"></div>
-            <span class="art-size-x">&times;</span>
-            <div class="art-size-field" style="max-width:70px"><label>Depth</label><input type="number" id="artD" value="3" min="1" max="30"></div>
-            <span class="art-size-unit">cm</span>
-          </div>
-        </div>
-        <div class="ctrl-group">
-          <div class="ctrl-label">Box Dimensions</div>
-          <div class="artwork-size-row">
-            <div class="art-size-field"><label>Height</label><input type="number" id="hInput" value="40" min="10" max="200"></div>
-            <span class="art-size-x">&times;</span>
-            <div class="art-size-field"><label>Width</label><input type="number" id="wInput" value="50" min="10" max="200"></div>
-            <span class="art-size-x">&times;</span>
-            <div class="art-size-field" style="max-width:70px"><label>Depth</label><input type="number" id="dInput" value="5" min="2" max="40"></div>
-            <span class="art-size-unit">cm</span>
-          </div>
-        </div>
-        <div class="ctrl-group">
-          <div class="ctrl-label">Gap between artwork &amp; box wall</div>
-          <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
-            <input type="number" id="gapInput" value="0.5" min="0.5" max="8" step="0.5" style="width:80px;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:15px">
-            <span style="font-size:14px;color:var(--text-3)">cm</span>
-            <span id="gapNoteText" style="font-size:12px;color:var(--text-3)">0.5cm snug fit recommended with Ukon Bag</span>
-          </div>
-        </div>
-        <div class="ctrl-group">
-          <div class="ctrl-label">Quantity <span class="val" id="discLabel"></span></div>
-          <div class="qty-group">
-            <button class="qty-btn" id="qtyMinus">&minus;</button>
-            <div class="qty-val" id="qtyDisp">1</div>
-            <button class="qty-btn" id="qtyPlus">+</button>
-          </div>
-        </div>
-        </div>
-        <div id="orderSummary" style="display:none;border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px">
-    <div style="font-weight:500;margin-bottom:8px;display:flex;justify-content:space-between">
-      <span>Your order (<span id="orderCount">0</span> items)</span>
-      <span id="orderRunningTotal" style="color:var(--accent)">$0</span>
-    </div>
-    <div id="orderItems" style="font-size:13px;color:var(--text-2)"></div>
-  </div>
-  <div class="quote-box">
-          <div class="quote-header">
-            <span class="brand">mamori</span>
-            <span class="ref" id="quoteRef">M-2025-0047</span>
-          </div>
-          <div class="ql" id="qlHousing">
-            <div class="ql-left">
-              <span class="ql-name" id="qlHousingLabel">Slide Box + Ukon Bag</span>
-              <span class="ql-detail" id="qlHousingDetail">40 &times; 50 &times; 5 cm &middot; Medium tier</span>
-            </div>
-            <span class="ql-amt" id="qlHousingAmt">$325</span>
-          </div>
-          <div style="text-align:right;padding:0 20px 8px"><a href="#review" id="btnReviewInline" style="font-size:13px;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);cursor:pointer">Review quote &amp; shipping →</a></div>
-          <div class="ql-sep"></div>
-          <div class="ql" id="deliveryLine" style="display:none">
-            <div class="ql-left">
-              <span class="ql-name">Delivery</span>
-              <span class="ql-detail">Calculated at checkout — HK Island $120 &bull; Kowloon $180 &bull; Free Wong Chuk Hang pick up</span>
-            </div>
-          </div>
-          <div id="quoteBreakdown" style="display:none"><div class="quote-sub">
-            <span>Per unit</span>
-            <span class="val" id="subTotal">$325</span>
-          </div>
-          <div class="quote-disc hidden" id="discLine">
-            <span id="discText">Volume discount 10%</span>
-            <span id="discAmt">&minus;$98</span>
-          </div>
-          <div class="quote-total">
-            <div>
-              <div class="lbl">Total</div>
-              <div class="per" id="qtPer">$325 per unit</div>
-            </div>
-            <div class="num" id="qtTotal">$325</div>
-          </div>
-          </div>
-          <div style="text-align:center;margin:16px 0"><span style="font-size:28px;font-weight:500" id="configPrice">$325</span><span style="color:var(--text-3)"> / box</span></div>
-          <div class="quote-actions" id="step1">
-<button class="btn-primary" id="btnAddToOrder" style="background:var(--bg);color:var(--accent);border:1.5px solid var(--accent)">Add to order</button>
-            <button class="btn-primary" id="btnReview">Review &amp; Send</button>
-          </div>
-          <div class="order-flow hidden" id="orderFlow">
-            <div class="ql-sep"></div>
-            <div class="order-summary">
-              <strong>Quote Summary</strong><br>
-              <span id="summaryText"></span>
-            </div>
-            <div class="order-form">
-              <input class="input-field" id="contactName" placeholder="Your name" required>
-              <input class="input-field" id="contactPhone" placeholder="Phone number" type="tel" required>
-              <input class="input-field" id="contactEmail" placeholder="Email address" type="email">
-              <input class="input-field" id="contactAddress" placeholder="Delivery address">
-              <div class="tog-row" id="elevatorToggle">
-                <span class="tog-label">Access with elevator?</span>
-                <button class="tog-btn-sm active" data-v="yes">Yes</button>
-                <button class="tog-btn-sm" data-v="no">No</button>
-              </div>
-              <div class="stairs-field hidden" id="stairsField">
-                <input class="input-field" id="contactStairs" placeholder="How many stairs / floors?" type="text">
-              </div>
-              <div class="tog-row" id="parkingToggle">
-                <span class="tog-label">Available parking?</span>
-                <button class="tog-btn-sm active" data-v="yes">Yes</button>
-                <button class="tog-btn-sm" data-v="no">No</button>
-              </div>
-              <div class="tog-row" id="shippingToggle" style="margin-bottom:12px">
-                <span class="tog-label">Delivery</span>
-                <button class="tog-btn-sm active" data-v="wch">Free WCH pick up</button>
-                <button class="tog-btn-sm" data-v="hk_island">HK Island $120</button>
-                <button class="tog-btn-sm" data-v="kowloon">Kowloon $180</button>
-              </div>
-              <textarea class="input-field" id="contactMsg" placeholder="Note &mdash; specific instructions, timing preferences..." rows="2"></textarea>
-            </div>
-            <div class="order-actions">
-              <button class="btn-primary" id="btnApprove">Approve &amp; Send</button>
-              <button class="btn-ghost" id="btnCancel">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="preview-panel">
+<img id="previewImg" src="images/slidebox-main.jpeg" alt="Product preview">
+<div class="preview-meta"><span id="previewLabel">Slide Box + Ukon Bag</span><span id="previewDims">40 x 50 x 5 cm</span></div>
+</div>
 
-<section class="contact" id="contact">
-  <div class="container">
-    <h2>Have a question?</h2>
-    <p>Message us your artwork dimensions and we'll send a quote within 24 hours. Or drop by the studio.</p>
-    <div class="contact-links">
-      <a href="https://wa.me/85293246171" target="_blank" class="btn-primary">Message on WhatsApp</a>
-      <a href="mailto:info@mamori.hk" class="btn-secondary">Email us</a>
-    </div>
-  </div>
-</section>
+<div class="controls">
+<div class="ctrl-group">
+<div class="ctrl-label">Choose your system</div>
+<div class="tog-row" id="housingBtns">
+<button class="tog-btn active" data-v="system">Slide Box + Ukon Bag</button>
+<button class="tog-btn" data-v="slide">Slide Box</button>
+<button class="tog-btn" data-v="cover">Cover Box</button>
+<button class="tog-btn" data-v="cover_foam">Cover + Foam <span class="txt-sm">(soon)</span></button>
+</div>
+</div>
 
-<footer>
-  <div class="container">
-    <div class="foot-left">
-      <img src="images/mamori_logo_black.svg" alt="Mamori">
-      <span>&copy; 2025 Mamori &mdash; Hong Kong</span>
-    </div>
-    <div class="foot-right">
-      <a href="https://wa.me/85293246171" target="_blank">WhatsApp</a>
-      <a href="mailto:info@mamori.hk">Email</a>
-    </div>
-  </div>
-</footer>
+<div class="ctrl-group">
+<div class="ctrl-label">Artwork size (cm)</div>
+<div class="dim-row">
+<input type="number" id="artH" value="38" min="5" max="200"><span>x</span>
+<input type="number" id="artW" value="48" min="5" max="200"><span>x</span>
+<input type="number" id="artD" value="3" min="1" max="30"><span>cm</span>
+</div>
+</div>
+
+<div class="ctrl-group">
+<div class="ctrl-label">Box dimensions (cm)</div>
+<div class="dim-row">
+<input type="number" id="boxH" value="40" min="10" max="200"><span>x</span>
+<input type="number" id="boxW" value="50" min="10" max="200"><span>x</span>
+<input type="number" id="boxD" value="5" min="2" max="40"><span>cm</span>
+</div>
+</div>
+
+<div class="ctrl-group" id="gapGroup">
+<div class="ctrl-label">Gap</div>
+<div class="dim-row">
+<input type="number" id="gapVal" value="0.5" min="0.5" max="8" step="0.5"><span>cm</span>
+<span class="txt-sm" id="gapNote">0.5cm snug fit recommended with Ukon Bag</span>
+</div>
+</div>
+
+<div class="ctrl-group">
+<div class="ctrl-label">Quantity</div>
+<div class="qty-row">
+<button id="qtyMinus">-</button>
+<div class="qty-val" id="qtyDisp">1</div>
+<button id="qtyPlus">+</button>
+</div>
+</div>
+
+<div class="order-summary" id="orderSummary">
+<div style="font-weight:500;margin-bottom:6px">Your order (<span id="orderCount">0</span>)</div>
+<div id="orderItems"></div>
+<div class="order-total">Total: $<span id="orderTotal">0</span></div>
+</div>
+
+<div class="quote-box">
+<div class="quote-line">
+<div><div class="name" id="qlName">Slide Box + Ukon Bag</div><div class="detail" id="qlDetail">40 x 50 x 5 cm</div></div>
+<div class="price" id="qlPrice">$325</div>
+</div>
+<div class="quote-divider"></div>
+<div class="quote-line" id="deliveryLine" style="display:none">
+<div class="name">Delivery</div>
+<div class="detail">Calculated at checkout — HK Island $120 · Kowloon $180 · Free WCH pick up</div>
+</div>
+<div id="quoteBreakdown" style="display:none">
+<div class="quote-divider"></div>
+<div class="quote-line"><span>Subtotal</span><span id="subTotal">$325</span></div>
+<div class="quote-line hidden" id="discLine"><span id="discText">Volume discount</span><span id="discAmt">-$0</span></div>
+<div class="total-line"><span>Total</span><span class="price" id="qtTotal">$325</span></div>
+</div>
+</div>
+
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn btn-outline" id="btnAdd">Add to order</button>
+<button class="btn btn-black btn-full" id="btnReview">Review and Send</button>
+</div>
+
+<div class="order-form" id="orderForm">
+<div class="quote-divider" style="margin:16px 0"></div>
+<div style="font-weight:500;margin-bottom:8px">Quote Summary</div>
+<div id="summaryText" class="txt-sm" style="margin-bottom:12px;white-space:pre-line"></div>
+<div class="flex">
+<span class="txt-sm" style="width:80px">Delivery</span>
+<button class="tog-sm active" data-v="wch">Free WCH</button>
+<button class="tog-sm" data-v="hk">HK Island $120</button>
+<button class="tog-sm" data-v="kln">Kowloon $180</button>
+</div>
+<input placeholder="Your name" id="cName">
+<input placeholder="Phone number" id="cPhone" type="tel">
+<input placeholder="Email" id="cEmail" type="email">
+<input placeholder="Delivery address" id="cAddr">
+<div class="flex"><span class="txt-sm">Elevator?</span><button class="tog-sm active" data-v="yes">Yes</button><button class="tog-sm" data-v="no">No</button></div>
+<div class="flex" style="gap:8px">
+<button class="btn btn-black btn-full" id="btnApprove">Approve and Send</button>
+<button class="btn btn-outline" id="btnCancel">Cancel</button>
+</div>
+</div>
+
+</div></div></div></section>
+
+<section class="contact" id="contact"><div class="container">
+<h2>Have a question?</h2>
+<p>Message us your artwork dimensions for a quote within 24 hours.</p>
+<a href="https://wa.me/85293246171" class="btn btn-black">WhatsApp</a>
+</div></section>
+
+<footer><div class="container">Mamori — Hong Kong</div></footer>
 
 <script>
-function initCarousels(){document.querySelectorAll('.carousel-wrap').forEach(function(wrap){var track=wrap.querySelector('.carousel-track');var imgs=track.querySelectorAll('img');var nav=wrap.querySelector('.carousel-nav');nav.innerHTML='';imgs.forEach(function(_,i){var dot=document.createElement('button');dot.className='carousel-dot'+(i===0?' active':'');dot.onclick=function(){goToSlide(wrap,i)};nav.appendChild(dot)})})}
-function goToSlide(wrap,i){var track=wrap.querySelector('.carousel-track');track.style.transform='translateX(-'+(i*100)+'%)';wrap.querySelectorAll('.carousel-dot').forEach(function(d,j){d.classList.toggle('active',j===i)})}
-function carouselNext(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap.querySelector('.carousel-track');var imgs=track.querySelectorAll('img');var current=Math.round(track.style.transform.replace('translateX(-','').replace('%)','')||0)/100;goToSlide(wrap,current<imgs.length-1?current+1:0)}
-function carouselPrev(btn){var wrap=btn.closest('.carousel-wrap');var track=wrap.querySelector('.carousel-track');var imgs=track.querySelectorAll('img');var current=Math.round(track.style.transform.replace('translateX(-','').replace('%)','')||0)/100;goToSlide(wrap,current>0?current-1:imgs.length-1)}
-initCarousels();
-
-var S={housing:'system',h:40,w:50,d:5,gap:1,foam:1,qty:1,artH:38,artW:48,artD:3};
-const LANDED=29.19,USABLE=15420;function calcPrice(h,w,d){const a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/0.90)*1.25)};const PRICE_RATIO={system:1,slide:.85,cover:.6,cover_foam:.6};
-var VOL=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}];
-var HL={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box',cover_foam:'Cover Box + Foam'};
-var HOUSING_IMG={system:'images/Ukon%20Bag.png',slide:'images/slidebox-main.jpeg',cover:'images/slidebox-main.jpeg',cover_foam:'images/slidebox-main.jpeg'};
-// canvas removed
-
-
-function resizeCanvas(){var r=cvs.parentElement.getBoundingClientRect();cvs.width=r.width*dpr;cvs.height=r.height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-function lerp(a,b,t){return a+(b-a)*t}
-function drawCanvas(){}function dimLine(x1,y1,x2,y2){ctx.strokeStyle='rgba(0,0,0,.1)';ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();var dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy);if(len<1)return;var nx=-dy/len*4,ny=dx/len*4;[[x1,y1],[x2,y2]].forEach(function(p){ctx.beginPath();ctx.moveTo(p[0]+nx,p[1]+ny);ctx.lineTo(p[0]-nx,p[1]-ny);ctx.stroke()})}
-function canvasLoop(){}
-function getQuote(){const base=calcPrice(S.h,S.w,S.d);const perUnit=Math.round(base*PRICE_RATIO[S.housing]);const vol=[...VOL].reverse().find(v=>S.qty>=v.min),pct=vol?vol.pct:0;const subTotal=perUnit*S.qty,discAmt=Math.round(subTotal*pct/100),total=subTotal-discAmt;return{base,perUnit,subTotal,discAmt,total,pct,tierName:S.h+S.w<=60?'Small':S.h+S.w<=140?'Medium':'Large',perUnitDisc:Math.round(perUnit*(100-pct)/100)}}
-var prevTotal=0;
-document.getElementById("systemPreviewImg").src=HOUSING_IMG[S.housing];function renderQuote(){var q=getQuote();document.getElementById('tierLabel').textContent=q.tierName.toUpperCase();document.getElementById('metaHousing').textContent=HL[S.housing];document.getElementById('metaDims').textContent='Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm';document.getElementById('qlHousingLabel').textContent=HL[S.housing];document.getElementById('qlHousingDetail').textContent=S.artH+'\u00d7'+S.artW+'\u00d7'+S.artD+'cm art \u00b7 Box: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 '+(S.housing==='cover'?'Foam: '+S.foam+'cm':'Gap: '+S.gap+'cm');document.getElementById('qlHousingAmt').textContent='$'+q.base;document.getElementById('subTotal').textContent='$'+q.perUnit;document.getElementById('configPrice').textContent='$'+q.perUnitDisc;var discLine=document.getElementById('discLine');if(q.pct>0){discLine.classList.remove('hidden');document.getElementById('discText').textContent='\u00d7'+S.qty+' \u2014 Volume discount '+q.pct+'%';document.getElementById('discAmt').textContent='\u2212$'+q.discAmt}else{discLine.classList.add('hidden')}document.getElementById('qtPer').textContent='$'+q.perUnitDisc+(S.qty>1?' per unit':'');animateNumber(document.getElementById('qtTotal'),prevTotal,q.total,400);prevTotal=q.total;document.getElementById('qtyDisp').textContent=S.qty;document.document.getElementById('discLabel').textContent='';if(S.housing==='cover'){document.getElementById('gapGroup').style.display='none';document.getElementById('foamGroup').style.display='block';document.getElementById('gapNoteText').textContent='Foam padding replaces gap for Cover Box'}else{document.getElementById('gapGroup').style.display='block';document.getElementById('foamGroup').style.display='none'}if(S.housing==='system'&&S.gap!==0.5&&!window._gapSet){S.gap=0.5;document.getElementById('foamInput').value=S.foam;document.getElementById('gapInput').value=0.5;document.getElementById('gapNoteText').textContent='0.5cm snug fit recommended with Ukon Bag \u2014 drag to adjust'}else if(S.housing!=='system'){window._gapSet=false;document.getElementById('gapNoteText').textContent='Drag the slider to adjust padding between artwork and box wall'}else{document.getElementById('gapNoteText').textContent='0.5cm snug fit recommended with Ukon Bag \u2014 drag to adjust'}}
-function animateNumber(el,from,to,dur){var start=performance.now();(function tick(now){var p=Math.min((now-start)/dur,1);el.textContent='$'+Math.round(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(performance.now())}
-function bindToggle(gid,key){var btns=document.querySelectorAll('#'+gid+' .tog-btn');btns.forEach(function(btn){btn.addEventListener('click',function(){btns.forEach(function(b){b.classList.remove('active')});btn.classList.add('active');S[key]=btn.dataset.v;if(HOUSING_IMG[S[key]])document.getElementById('systemPreviewImg').src=HOUSING_IMG[S[key]];renderQuote()})})}
-
-var ORDER=[];
-var ORDER_ID=0;
-function addToOrder(){
-  var item={id:++ORDER_ID,housing:S.housing,h:S.h,w:S.w,d:S.d,gap:S.gap,foam:S.foam,artH:S.artH,artW:S.artW,artD:S.artD,qty:S.qty};
-  var q=getQuote();
-  item.price=q.perUnitDisc;
-  item.total=q.total;
-  ORDER.push(item);
-  renderOrderSummary();
+var HW={system:'Slide Box + Ukon Bag',slide:'Slide Box',cover:'Cover Box',cover_foam:'Cover Box + Foam'};
+var IMG={system:'images/Ukon%20Bag.png',slide:'images/slidebox-main.jpeg',cover:'images/slidebox-main.jpeg',cover_foam:'images/slidebox-main.jpeg'};
+var RATIO={system:1,slide:.85,cover:.6,cover_foam:.6};
+var LANDED=29.19,USABLE=15420;
+var S={housing:'system',h:40,w:50,d:5,gap:.5,qty:1};
+var ORDER=[],nextId=0;
+function price(h,w,d){var a=2*(h*w)+2*d*(h+w);return Math.round(((a/USABLE*LANDED*1.5+100)/.9)*1.25)}
+function getQuote(){var b=price(S.h,S.w,S.d);var pu=Math.round(b*RATIO[S.housing]);var vol=[{min:1,pct:0},{min:3,pct:10},{min:6,pct:15}].reverse().find(function(v){return S.qty>=v.min});var pct=vol?vol.pct:0;var st=pu*S.qty;var d=Math.round(st*pct/100);return{base:b,perUnit:pu,subTotal:st,discAmt:d,total:st-d,pct:pct,perUnitDisc:Math.round(pu*(100-pct)/100)}}
+function updateBtns(){document.querySelectorAll('#housingBtns .tog-btn').forEach(function(b){b.classList.toggle('active',b.dataset.v===S.housing)})}
+function render(){
+var q=getQuote();
+document.getElementById('previewLabel').textContent=HW[S.housing];
+document.getElementById('previewDims').textContent=S.h+' x '+S.w+' x '+S.d+' cm';
+document.getElementById('previewImg').src=IMG[S.housing];
+document.getElementById('qlName').textContent=HW[S.housing];
+document.getElementById('qlDetail').textContent=S.h+' x '+S.w+' x '+S.d+' cm · Gap: '+S.gap+'cm';
+document.getElementById('qlPrice').textContent='$'+q.perUnitDisc;
+document.getElementById('qtyDisp').textContent=S.qty;
+if(S.housing==='system'&&S.gap!==.5){S.gap=.5;document.getElementById('gapVal').value=.5}
+document.getElementById('gapNote').textContent=S.housing==='system'?'0.5cm snug fit recommended with Ukon Bag':'Adjust padding between artwork and box wall';
 }
-function removeFromOrder(id){
-  ORDER=ORDER.filter(function(i){return i.id!==id});
-  renderOrderSummary();
-}
-function renderOrderSummary(){
-  if(ORDER.length===0){
-    document.getElementById('orderSummary').style.display='none';
-    return;
-  }
-  document.getElementById('orderSummary').style.display='block';
-  document.getElementById('orderCount').textContent=ORDER.length;
-  var itemsHTML='';
-  var grandTotal=0;
-  ORDER.forEach(function(item){
-    var label=HL[item.housing];
-    itemsHTML+='<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #f0f0f0">';
-    itemsHTML+='<span>'+label+' &middot; '+item.h+'x'+item.w+'x'+item.d+'cm &middot; Gap:'+item.gap+'cm &middot; x'+item.qty+'</span>';
-    itemsHTML+='<span style="display:flex;align-items:center;gap:8px">$'+item.total+' <span onclick="removeFromOrder('+item.id+')" style="cursor:pointer;color:#999;font-size:16px">&times;</span></span>';
-    itemsHTML+='</div>';
-    grandTotal+=item.total;
-  });
-  document.getElementById('orderItems').innerHTML=itemsHTML;
-  document.getElementById('orderRunningTotal').textContent='$'+grandTotal;
-}
-document.getElementById('btnAddToOrder').addEventListener('click',addToOrder);
-bindToggle('housingToggle','housing');
-document.querySelectorAll('#elevatorToggle .tog-btn-sm, #parkingToggle .tog-btn-sm').forEach(function(btn){btn.addEventListener('click',function(){this.parentElement.querySelectorAll('.tog-btn-sm').forEach(function(b){b.classList.remove('active')});this.classList.add('active');if(this.closest('#elevatorToggle')){document.getElementById('stairsField').classList.toggle('hidden',this.dataset.v==='yes')}})});
-[{id:'hInput',key:'h'},{id:'wInput',key:'w'},{id:'dInput',key:'d'},{id:'gapInput',key:'gap'},{id:'foamInput',key:'foam'}].forEach(function(item){document.getElementById(item.id).addEventListener('input',function(){S[item.key]=parseFloat(this.value);if(item.key==='gap')window._gapSet=true;renderQuote()})});
-document.getElementById('artH').addEventListener('input',function(){S.artH=parseInt(this.value)||5;renderQuote()});
-document.getElementById('artW').addEventListener('input',function(){S.artW=parseInt(this.value)||5;renderQuote()});
-document.getElementById('artD').addEventListener('input',function(){S.artD=parseInt(this.value)||1;renderQuote()});
-document.getElementById('qtyMinus').addEventListener('click',function(){if(S.qty>1){S.qty--;renderQuote()}});
-document.getElementById('qtyPlus').addEventListener('click',function(){if(S.qty<20){S.qty++;renderQuote()}});
-function genRef(){document.getElementById('quoteRef').textContent='M-2025-'+(Math.floor(Math.random()*9000)+1000)}
-document.getElementById('btnReviewInline').addEventListener('click',function(){document.getElementById('btnReview').click()});document.getElementById('btnReview').addEventListener('click',function(){var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();document.getElementById('summaryText').textContent=HL[S.housing]+' \u00b7 '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm \u00b7 Gap: '+S.gap+'cm \u00b7 Foam: '+S.foam+'cm \u00b7 Qty: '+(S.qty>1?' \u00b7 $'+q.perUnitDisc+'/ea':'')+' \u00b7 Total: $'+q.total+(extra?' \u00b7 Note: '+extra:'');document.getElementById('step1').classList.add('hidden');document.getElementById('orderFlow').classList.remove('hidden');document.getElementById('quoteBreakdown').style.display='block';document.getElementById('deliveryLine').style.display='flex';document.getElementById('detailSep').style.display='block';window.scrollTo({top:document.getElementById('orderFlow').offsetTop+window.scrollY-120,behavior:'smooth'})});
-document.getElementById('btnCancel').addEventListener('click',function(){document.getElementById('orderFlow').classList.add('hidden');document.getElementById('step1').classList.remove('hidden')});
-document.getElementById('btnApprove').addEventListener('click',function(){var name=document.getElementById('contactName').value.trim();var phone=document.getElementById('contactPhone').value.trim();var email=document.getElementById('contactEmail').value.trim();var address=document.getElementById('contactAddress').value.trim();if(!name||!phone){alert('Please provide your name and phone number.');return}var elevator=document.querySelector('#elevatorToggle .tog-btn-sm.active').dataset.v;var parking=document.querySelector('#parkingToggle .tog-btn-sm.active').dataset.v;var q=getQuote();var extra=document.getElementById('extraRequest').value.trim();var note=document.getElementById('contactMsg').value.trim();var msg='[MAMORI ORDER]\nClient: '+name+'\nPhone: '+phone+'\n';if(email)msg+='Email: '+email+'\n';if(address)msg+='Address: '+address+'\n';msg+='Elevator: '+elevator+(elevator==='no'&&document.getElementById('contactStairs').value.trim()?' ('+document.getElementById('contactStairs').value.trim()+' floors)':'')+'\nParking: '+parking+'\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nRef: '+document.getElementById('quoteRef').textContent+'\nSystem: '+HL[S.housing]+'\nSize: '+S.h+'\u00d7'+S.w+'\u00d7'+S.d+'cm ('+q.tierName+')\nGap: '+S.gap+'cm \u00b7 Foam: '+S.foam+'cm\nQty: '+S.qty+'\n';if(q.pct>0)msg+='Discount: '+q.pct+'%\n';msg+='\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nTOTAL: $'+q.total+'\nDelivery: quoted separately\n';if(extra)msg+='\nExtra: '+extra;if(note)msg+='\nNote: '+note;try{
-  var x=new XMLHttpRequest();
-  x.open('POST','https://script.google.com/macros/s/AKfycbzFoC__Ascrsh30_2MoMfFOGlpn9-p90sGlSjgBb5_T594gVCW3WzW3wlyQomUyTMK3YA/exec',true);
-  x.setRequestHeader('Content-Type','text/plain');
-  x.send(JSON.stringify({ref:document.getElementById('quoteRef').textContent,date:new Date().toISOString(),name:name,phone:phone,email:email,address:address,elevator:elevator,parking:parking,product:HL[S.housing],dimensions:S.h+'x'+S.w+'x'+S.d+'cm',qty:S.qty,total:q.total,extra:extra,note:note}));
-}catch(e){}window.open('https://wa.me/85293246171?text='+encodeURIComponent(msg),'_blank');if(email){window.open('mailto:info@mamori.hk?subject='+encodeURIComponent('Order: '+document.getElementById('quoteRef').textContent+' \u2014 '+name)+'&body='+encodeURIComponent(msg),'_blank')}document.getElementById('orderFlow').classList.add('hidden');document.getElementById('step1').classList.remove('hidden')});
-window.addEventListener('resize',resizeCanvas);genRef();renderQuote();
+document.querySelectorAll('#housingBtns .tog-btn').forEach(function(b){b.addEventListener('click',function(){S.housing=b.dataset.v;updateBtns();render()})});
+['artH','artW','artD','boxH','boxW','boxD','gapVal'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){var v=parseFloat(this.value)||0;if(id==='artH')S.artH=v;else if(id==='artW')S.artW=v;else if(id==='artD')S.artD=v;else if(id==='boxH')S.h=v;else if(id==='boxW')S.w=v;else if(id==='boxD')S.d=v;else if(id==='gapVal')S.gap=v;render()})});
+document.getElementById('qtyMinus').addEventListener('click',function(){if(S.qty>1){S.qty--;render()}});
+document.getElementById('qtyPlus').addEventListener('click',function(){if(S.qty<20){S.qty++;render()}});
+document.getElementById('btnAdd').addEventListener('click',function(){var q=getQuote();ORDER.push({id:++nextId,housing:S.housing,h:S.h,w:S.w,d:S.d,gap:S.gap,qty:S.qty,price:q.perUnitDisc,total:q.total,label:HW[S.housing]});renderOrderSummary()});
+function renderOrderSummary(){var e=document.getElementById('orderSummary');if(ORDER.length===0){e.style.display='none';return}e.style.display='block';document.getElementById('orderCount').textContent=ORDER.length;var h='',t=0;ORDER.forEach(function(i){h+='<div class=order-item><span>'+i.label+' · '+i.h+'x'+i.w+'x'+i.d+'cm · x'+i.qty+'</span><span>$'+i.total+'<span class=remove onclick=removeOrder('+i.id+')> x</span></span></div>';t+=i.total});document.getElementById('orderItems').innerHTML=h;document.getElementById('orderTotal').textContent=t}
+function removeOrder(id){ORDER=ORDER.filter(function(i){return i.id!==id});renderOrderSummary()}
+document.getElementById('btnReview').addEventListener('click',function(){var q=getQuote();var lines=[],gt=0;if(ORDER.length===0){lines.push(HW[S.housing]+' · '+S.h+'x'+S.w+'x'+S.d+'cm · Gap:'+S.gap+'cm · x'+S.qty+' · $'+q.total);gt=q.total}else{ORDER.forEach(function(i){lines.push(i.label+' · '+i.h+'x'+i.w+'x'+i.d+'cm · x'+i.qty+' · $'+i.total)});gt=ORDER.reduce(function(s,i){return s+i.total},0)}lines.push('Total: $'+gt);document.getElementById('summaryText').textContent=lines.join('\n');document.getElementById('orderForm').classList.add('show');document.getElementById('deliveryLine').style.display='flex';document.getElementById('quoteBreakdown').style.display='block';document.getElementById('subTotal').textContent='$'+q.perUnitDisc;if(q.pct>0){document.getElementById('discLine').classList.remove('hidden');document.getElementById('discText').textContent='x'+S.qty+' Volume '+q.pct+'%';document.getElementById('discAmt').textContent='-$'+q.discAmt}document.getElementById('qtTotal').textContent='$'+gt;document.getElementById('btnReview').style.display='none';document.getElementById('btnAdd').style.display='none'});
+document.getElementById('btnCancel').addEventListener('click',function(){document.getElementById('orderForm').classList.remove('show');document.getElementById('deliveryLine').style.display='none';document.getElementById('quoteBreakdown').style.display='none';document.getElementById('btnReview').style.display='';document.getElementById('btnAdd').style.display='';render()});
+document.getElementById('btnApprove').addEventListener('click',function(){var n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim();if(!n||!p){alert('Please provide name and phone');return}var s=document.querySelectorAll('#orderForm .tog-sm.active')[0].textContent;var m='[MAMORI ORDER]\nClient: '+n+'\nPhone: '+p+'\nShipping: '+s+'\nOrder: '+document.getElementById('summaryText').textContent;window.open('https://wa.me/85293246171?text='+encodeURIComponent(m),'_blank')});
+render();updateBtns();
 </script>
 </body>
 </html>
