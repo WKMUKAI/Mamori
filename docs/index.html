@@ -269,7 +269,8 @@ footer{padding:30px 0;border-top:1px solid var(--border);text-align:center;font-
 <div id="stairsRow" style="display:none;margin-bottom:8px"><input id="cStairs" placeholder="How many stairs / floors?" style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:6px;font-size:14px"></div>
 <div class="flex" style="gap:8px">
 <button class="btn btn-outline" id="btnBackReview" style="display:none">Back</button>
-<button class="btn btn-black btn-full" id="btnApprove">Approve and Send</button>
+<button class="btn btn-black btn-full" id="btnApprove">Send by WhatsApp</button>
+<button class="btn btn-outline btn-full" id="btnEmailOrder" style="margin-top:6px">Send by Email</button>
 <button class="btn btn-outline btn-full" id="btnPrintInvoice" style="margin-top:6px">Print Invoice</button>
 <button class="btn btn-outline btn-full" id="btnPrintInvoice" style="margin-top:6px">Print Invoice</button>
 <button class="btn btn-outline" id="btnCancel">Cancel</button>
@@ -351,6 +352,20 @@ var p=window.open('','_blank','width=800,height=700');
 if(!p){alert('Please allow popups for invoice printing');return}
 p.document.write('<!DOCTYPE html><html><head><title>Mamori Invoice</title><style>body{font:Arial,sans-serif;padding:30px;max-width:700px;margin:0 auto;color:#111}h2{font-size:22px;border-bottom:2px solid #000;padding-bottom:8px}.r{display:flex;justify-content:space-between;margin:6px 0}.l{border-top:1px solid #ddd;margin:12px 0;padding-top:8px}.t{font-size:18px;font-weight:bold;text-align:right}.pmt{background:#f5f5f5;padding:12px;border-radius:6px;margin-top:14px;font-size:13px}@media print{body{padding:20px}}</style></head><body onload=window.print()><div style=font-weight:bold;font-size:16px>Mamori</div><div style=font-size:12px;color:#666>Invoice '+r+' | '+d.toLocaleDateString()+'</div><h2>INVOICE</h2><div class=r><span><b>Bill to:</b><br>'+n+'<br>'+a+'</span><span><b>Shipping:</b><br>'+sh+'</span></div><div class=l></div><pre style=font:14px+Arial,sans-serif;line-height:1.6>'+s+'</pre><div class=l></div><div class=t>Total: '+s.split("\n").pop()+'</div>'+(si?'<p style=font-size:13px><b>Special:</b> '+si+'</p>':'')+'<div class=pmt><b>Payment:</b> FPS / Bank Transfer &mdash; Mamori, WKM Gallery, Wong Chuk Hang, Hong Kong</div><p style=text-align:center;margin-top:20px;color:#999;font-size:12px>Thank you for your order</p></body></html>');
 p.document.close()
+});
+
+document.getElementById('btnEmailOrder').addEventListener('click',function(){
+var n=document.getElementById('cName').value.trim(),p=document.getElementById('cPhone').value.trim(),si=document.getElementById('specialInstr').value.trim(),stairs=document.getElementById('cStairs').value.trim(),email=document.getElementById('cEmail').value.trim(),floor=document.getElementById('cFloor').value.trim(),bldg=document.getElementById('cBldg').value.trim(),street=document.getElementById('cStreet').value.trim(),addr=document.getElementById('cAddr').value.trim(),fullAddr=(floor+(floor&&bldg?'/':'')+bldg+(bldg&&street?' ':'')+street+(street&&addr?', ':'')+addr);
+var d=new Date(),ref='M-'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.floor(Math.random()*900+100);
+var sh=(document.querySelector('#orderForm .flex .tog-sm.active')||{}).textContent||'';
+var sum=document.getElementById('summaryText').textContent;
+var body='Order Ref: '+ref+'\nClient: '+n+'\nPhone: '+p+'\nShipping: '+sh+'\nAddress: '+fullAddr;
+if(stairs)body+='\nStairs: '+stairs+' floors';
+if(si)body+='\nSpecial: '+si;
+body+='\n\n'+sum+'\n\nPayment: FPS / Bank Transfer\nMamori — WKM Gallery\nWong Chuk Hang, HK';
+window.location.href='mailto:'+(email||'')+'?subject=Mamori Order '+ref+'&body='+encodeURIComponent(body);
+var img=new Image();
+img.src='https://script.google.com/macros/s/AKfycbxOQz3A0yBwIiicC_T3WqBgxx5hHW33mpC6p1xSUwFWlhESoHqJoYVgC9poRbf5tjs5AA/exec?name='+encodeURIComponent(n)+'&phone='+encodeURIComponent(p)+'&email='+encodeURIComponent(email)+'&address='+encodeURIComponent(fullAddr)+'&product=Mamori+order&dimensions='+encodeURIComponent(sum)+'&qty=1&total=0&ref='+ref+'&extra='+encodeURIComponent(si||'')
 });
 render();updateBtns();
 </script>
