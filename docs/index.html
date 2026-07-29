@@ -196,10 +196,10 @@ footer{padding:30px 0;border-top:1px solid var(--border);text-align:center;font-
 </div>
 
 <div class="ctrl-group" id="gapGroup">
-<div class="ctrl-label">Gap</div>
+<div class="ctrl-label">Gap <span class="txt-sm" style="font-weight:400">— Adjust gap between artwork and cardboard wall</span></div>
 <div class="dim-row">
 <input type="number" id="gapVal" value="0.5" min="0.5" max="8" step="0.5"><span>cm</span>
-<span class="txt-sm" id="gapNote">*0.5cm snug fit with Ukon Bag — approx. 3cm if using bubble wrap</span>
+<span class="txt-sm" id="gapNote">*0.5cm recommended snug fit with Ukon Bag — approx. 4cm if using bubble wrap</span>
 </div>
 </div>
 
@@ -309,7 +309,7 @@ document.getElementById('qlDetail').textContent=S.h+' x '+S.w+' x '+S.d+' cm · 
 document.getElementById('qlPrice').textContent='$'+q.perUnitDisc;
 document.getElementById('qtyDisp').textContent=S.qty;
 if(S.housing==='system'&&S.gap!==.5){S.gap=.5;document.getElementById('gapVal').value=.5}
-document.getElementById('gapNote').textContent=S.housing==='system'?'Adjust gap between artwork and cardboard wall. *0.5cm snug fit with Ukon Bag — approx. 3cm if using bubble wrap':'Adjust padding between artwork and box wall';
+document.getElementById('gapNote').textContent='*0.5cm recommended snug fit with Ukon Bag — approx. 4cm if using bubble wrap';
 }
 document.querySelectorAll('#housingBtns .tog-btn').forEach(function(b){b.addEventListener('click',function(){S.housing=b.dataset.v;updateBtns();render()})});
 ['artH','artW','artD','boxH','boxW','boxD','gapVal'].forEach(function(id){document.getElementById(id).addEventListener('input',function(){var v=parseFloat(this.value)||0;if(id==='artH')S.artH=v;else if(id==='artW')S.artW=v;else if(id==='artD')S.artD=v;else if(id==='boxH')S.h=v;else if(id==='boxW')S.w=v;else if(id==='boxD')S.d=v;else if(id==='gapVal')S.gap=v;render()})});
