@@ -325,25 +325,8 @@ document.getElementById('btnApprove').addEventListener('click',function(){var n=
 document.querySelectorAll('#orderForm .flex .tog-sm').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();var row=this.closest('.flex');row.querySelectorAll('.tog-sm').forEach(function(x){x.classList.remove('active')});this.classList.add('active');if(this.dataset.v==='no'&&row.querySelector('span').textContent.includes('Elevator')){document.getElementById('stairsRow').style.display='block'}else if(this.dataset.v==='yes'&&row.querySelector('span').textContent.includes('Elevator')){document.getElementById('stairsRow').style.display='none'}})})
 
 var reviewRating=0;
-document.querySelectorAll('.star-btn').forEach(function(b,i){
-b.addEventListener('click',function(){
-reviewRating=i+1;
-document.getElementById('starLabel').textContent=reviewRating+' star'+(reviewRating>1?'s':'');
-document.querySelectorAll('.star-btn').forEach(function(s,j){s.style.opacity=j<reviewRating?'1':'.3'})
-})
-});
-document.getElementById('btnSubmitReview').addEventListener('click',function(){
-var t=document.getElementById('reviewText').value.trim();
-if(!t){alert('Please write a few words about your experience');return}
-var n=document.getElementById('reviewName').value.trim();
-var title=document.getElementById('reviewTitle').value.trim();
-var perm=document.getElementById('permYes').classList.contains('active')?'Yes':'No';
-var nameLine=perm==='Yes'&&n?n+(title?' ('+title+')':''):'Anonymous';
-var msg='[MAMORI REVIEW]\nRating: '+reviewRating+'/5 stars\nReview: '+t+'\nName: '+nameLine+'\nPermission: '+perm;
-window.open('https://wa.me/85255962339?text='+encodeURIComponent(msg),'_blank')
-});
-document.getElementById('permYes').addEventListener('click',function(){this.classList.add('active');document.getElementById('permNo').classList.remove('active')});
-document.getElementById('permNo').addEventListener('click',function(){this.classList.add('active');document.getElementById('permYes').classList.remove('active')});
+
+
 
 render();updateBtns();
 </script>
